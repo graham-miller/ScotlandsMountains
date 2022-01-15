@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using CsvHelper.Configuration.Attributes;
+﻿using CsvHelper.Configuration.Attributes;
 
 namespace ScotlandsMountains.Import;
 
@@ -85,7 +84,7 @@ public class DobihRecord
     public string CountyTop { get; set; }
 
     [Name("Revision")]
-    public DateOnly Revision { get; set; }
+    public DateTime Revision { get; set; }
 
     [Name("Comments")]
     public string Comments { get; set; }
