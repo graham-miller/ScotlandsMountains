@@ -18,7 +18,10 @@ namespace ScotlandsMountains.Import
             using (var csv = new CsvReader(reader, csvConfiguration))
             {
                 csv.Context.RegisterClassMap<DobihRecordMap>();
-                var records = csv.GetRecords<DobihRecord>().ToList();
+                var records = csv.GetRecords<DobihRecord>()
+                    .Where(r => r.Countries.Contains("Scotland"))
+                    .OrderByDescending(r => r.Metres)
+                    .ToList();
             }
         }
     }

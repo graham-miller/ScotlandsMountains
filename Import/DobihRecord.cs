@@ -8,8 +8,9 @@ public class DobihRecord
     [Name("Number")]
     public int Number { get; set; }
 
-    [Name("Name")]
     public string Name { get; set; }
+
+    public List<string> Aliases { get; set; }
 
     [Name("Parent (SMC)")]
     public int? ParentSmc { get; set; }
