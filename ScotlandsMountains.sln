@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Import", "Import\Import.csproj", "{175FEC04-B13A-4DEB-91AC-BA6F1CE4A628}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Import.Test", "Import.Test\Import.Test.csproj", "{43029AF9-635E-46AE-8793-00362F699B03}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{175FEC04-B13A-4DEB-91AC-BA6F1CE4A628}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{175FEC04-B13A-4DEB-91AC-BA6F1CE4A628}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{175FEC04-B13A-4DEB-91AC-BA6F1CE4A628}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{175FEC04-B13A-4DEB-91AC-BA6F1CE4A628}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43029AF9-635E-46AE-8793-00362F699B03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43029AF9-635E-46AE-8793-00362F699B03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43029AF9-635E-46AE-8793-00362F699B03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43029AF9-635E-46AE-8793-00362F699B03}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {95E711D1-5FF8-4EEF-B098-78FE82EFB45B}
+	EndGlobalSection
+EndGlobal
