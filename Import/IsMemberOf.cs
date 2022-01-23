@@ -1,6 +1,4 @@
-﻿using CsvHelper.Configuration.Attributes;
-
-namespace ScotlandsMountains.Import;
+﻿namespace ScotlandsMountains.Import;
 
 public class IsMemberOf
 {

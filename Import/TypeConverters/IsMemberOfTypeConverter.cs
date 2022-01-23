@@ -1,9 +1,4 @@
-﻿using CsvHelper;
-using CsvHelper.Configuration;
-using CsvHelper.Configuration.Attributes;
-using CsvHelper.TypeConversion;
-
-namespace ScotlandsMountains.Import.TypeConverters;
+﻿namespace ScotlandsMountains.Import.TypeConverters;
 
 public class IsMemberOfTypeConverter : DefaultTypeConverter
 {

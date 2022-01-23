@@ -9,13 +9,13 @@ public class DobihRecord
 
     public string Name { get; set; }
 
-    public List<string> Aliases { get; set; }
+    public List<string> Aliases { get; set; } = new();
 
     [Name("Parent (SMC)")]
     public int? ParentSmc { get; set; }
 
     [Name("Parent name (SMC)")]
-    public string ParentNameSmc { get; set; }
+    public string? ParentNameSmc { get; set; }
 
     [Name("Section")]
     public string Section { get; set; }
@@ -24,25 +24,25 @@ public class DobihRecord
     public string Region { get; set; }
 
     [Name("Area")]
-    public string Area { get; set; }
+    public string? Area { get; set; }
 
     [Name("Island")]
-    public string Island { get; set; }
+    public string? Island { get; set; }
 
     [Name("Topo Section")]
-    public string TopoSection { get; set; }
+    public string? TopoSection { get; set; }
 
     [Name("County")]
-    public string County { get; set; }
+    public string? County { get; set; }
 
     [Name("Classification")]
-    public List<string> Classifications { get; set; }
+    public List<string> Classifications { get; set; } = new();
 
     [Name("Map 1:50k")]
-    public List<string> Maps1To50K { get; set; }
+    public List<string> Maps1To50K { get; set; } = new();
 
     [Name("Map 1:25k")]
-    public List<string> Maps1To25K { get; set; }
+    public List<string> Maps1To25K { get; set; } = new();
 
     [Name("Metres")]
     public double Metres { get; set; }
@@ -54,7 +54,7 @@ public class DobihRecord
     public string GridRef { get; set; }
 
     [Name("Grid ref 10")]
-    public string GridRef10 { get; set; }
+    public string? GridRef10 { get; set; }
 
     [Name("Drop")]
     public double Drop { get; set; }
@@ -66,37 +66,36 @@ public class DobihRecord
     public double ColHeight { get; set; }
 
     [Name("Feature")]
-    public string Feature { get; set; }
+    public string? Feature { get; set; }
 
     [Name("Observations")]
-    public string Observations { get; set; }
+    public string? Observations { get; set; }
 
     [Name("Survey")]
-    public string Survey { get; set; }
+    public string? Survey { get; set; }
 
     [Name("Climbed")]
-    public string Climbed { get; set; }
+    public string? Climbed { get; set; }
 
-    [Name("Country")]
-    public List<string> Countries { get; set; }
+    [Name("Country")] public List<string> Countries { get; set; } = new();
 
     [Name("County Top")]
-    public string CountyTop { get; set; }
+    public string? CountyTop { get; set; }
 
     [Name("Revision")]
     public DateTime Revision { get; set; }
 
     [Name("Comments")]
-    public string Comments { get; set; }
+    public string? Comments { get; set; }
 
     [Name("Streetmap/MountainViews")]
-    public string StreetmapMountainViews { get; set; }
+    public string? StreetmapMountainViews { get; set; }
 
     [Name("Geograph")]
-    public string Geograph { get; set; }
+    public string? Geograph { get; set; }
 
     [Name("Hill-bagging")]
-    public string HillBagging { get; set; }
+    public string? HillBagging { get; set; }
 
     [Name("Xcoord")]
     public int XCoord { get; set; }
@@ -120,10 +119,10 @@ public class DobihRecord
     public int ParentMa { get; set; }
 
     [Name("Parent name (Ma)")]
-    public string ParentNameMa { get; set; }
+    public string? ParentNameMa { get; set; }
 
     [Name("MVNumber")]
     public int? MvNumber { get; set; }
 
-    public IsMemberOf IsMemberOf { get; set; }
+    public IsMemberOf IsMemberOf { get; set; } = new();
 }

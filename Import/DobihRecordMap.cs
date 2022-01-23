@@ -1,8 +1,4 @@
-﻿using System.Globalization;
-using CsvHelper.Configuration;
-using ScotlandsMountains.Import.TypeConverters;
-
-namespace ScotlandsMountains.Import;
+﻿namespace ScotlandsMountains.Import;
 
 public class DobihRecordMap : ClassMap<DobihRecord>
 {
