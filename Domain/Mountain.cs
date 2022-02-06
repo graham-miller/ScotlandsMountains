@@ -23,9 +23,9 @@ public class Mountain : Entity
 
     public Mountain Parent { get; set; }
 
-    public string Region { get; set; }
+    public Section Section { get; set; }
 
-    public string County { get; set; }
+    public List<County> Counties { get; set; }
 
     public List<string> Classifications { get; set; }
 

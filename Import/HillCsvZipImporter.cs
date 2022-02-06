@@ -4,17 +4,25 @@ namespace ScotlandsMountains.Import;
 
 public class HillCsvZipImporter
 {
-    private Dictionary<int, DobihRecord> _records = new();
-    private Dictionary<string, Region> _regions = new();
-    private Dictionary<string, County> _counties = new();
-    private ClassificationsChecker _classificationsChecker = new ClassificationsChecker();
+    private Dictionary<int, DobihRecord>? _records;
+    private Dictionary<string, Section>? _sections;
+    private List<County> _counties = new();
+    private readonly ClassificationsProvider _classificationsProvider = new ();
+    private CountiesProvider? _countiesProvider;
     private Dictionary<string, Map> _maps = new();
+
+    public List<Mountain> Mountains { get; set; }
+    public List<Classification> Classifications { get; set; }
+    public List<Section> Sections { get; set; }
+    public List<County> Counties { get; set; }
+    public List<Map> Maps { get; set; }
 
     public void Import()
     {
         ReadRecords();
-        GetRegions();
+        GetSections();
         GetCounties();
+        _countiesProvider = new CountiesProvider(_counties);
         GetMaps();
 
         // WriteDobihRecordsToFile(records);
@@ -37,23 +45,23 @@ public class HillCsvZipImporter
             .ToDictionary(x => x.Number);
     }
 
-    private void GetRegions()
+    private void GetSections()
     {
-        _regions = _records.Values
+        _sections = _records.Values
             .Select(x => x.Region)
             .Distinct()
             .OrderBy(x => x)
-            .ToDictionary(x => x, x => x.ToRegion());
+            .ToDictionary(x => x, x => x.ToSection());
     }
 
     private void GetCounties()
     {
         _counties = _records.Values
-            .Select(x => x.County ?? Helper.MissingValue)
+            .SelectMany(x => x.County?.SplitCounties() ?? new List<string>())
             .Distinct()
-            .Where(x => !x.IsMissing())
-            .OrderBy(x => x)
-            .ToDictionary(x => x, x => x.ToCounty());
+            .Select(x => x.ToCounty())
+            .OrderBy(x => x.Name)
+            .ToList();
     }
 
     private void GetMaps()

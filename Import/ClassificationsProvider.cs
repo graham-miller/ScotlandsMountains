@@ -2,18 +2,27 @@
 
 namespace ScotlandsMountains.Import;
 
-internal class ClassificationsChecker
+internal class ClassificationsProvider
 {
-    private List<Checker> _checkerList;
+    private List<Provider> _providers;
 
-    public ClassificationsChecker()
+    public ClassificationsProvider()
     {
-        _checkerList = CreateCheckerList();
+        _providers = CreateProviders();
     }
 
-    private List<Checker> CreateCheckerList()
+    public List<Classification> GetClassifications(DobihRecord record)
     {
-        return _checkerList = new List<Checker>
+        return _providers
+            .Where(x => x.IsInClassification(record))
+            .Select(x => x.Classification)
+            .OrderBy(x => x.DisplayOrder)
+            .ToList();
+    }
+
+    private List<Provider> CreateProviders()
+    {
+        return _providers = new List<Provider>
         {
             new()
             {
@@ -194,7 +203,7 @@ internal class ClassificationsChecker
         };
     }
 
-    private class Checker
+    private class Provider
     {
         public Func<DobihRecord, bool> IsInClassification { get; set; }
 

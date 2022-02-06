@@ -1,6 +1,6 @@
 ﻿namespace ScotlandsMountains.Domain;
 
-public class Region : Entity
+public class Section : Entity
 {
     public string Code { get; set; }
 }
