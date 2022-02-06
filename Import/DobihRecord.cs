@@ -45,10 +45,10 @@ public class DobihRecord
     public List<string> Maps1To25K { get; set; } = new();
 
     [Name("Metres")]
-    public double Metres { get; set; }
+    public decimal Metres { get; set; }
 
     [Name("Feet")]
-    public double Feet { get; set; }
+    public decimal Feet { get; set; }
 
     [Name("Grid ref")]
     public string GridRef { get; set; }
@@ -57,13 +57,13 @@ public class DobihRecord
     public string? GridRef10 { get; set; }
 
     [Name("Drop")]
-    public double Drop { get; set; }
+    public decimal Drop { get; set; }
 
     [Name("Col grid ref")]
     public string ColGridRef { get; set; }
 
     [Name("Col height")]
-    public double ColHeight { get; set; }
+    public decimal ColHeight { get; set; }
 
     [Name("Feature")]
     public string? Feature { get; set; }

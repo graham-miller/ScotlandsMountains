@@ -22,8 +22,8 @@ public class MountainRepository : IMountainRepository
         _cosmosClientFactory = cosmosClientFactory;
 
         _databaseId = config.Value.DatabaseId;
-        _containerId = config.Value.MountainContainerId;
-        _throughput = config.Value.PurchaseContainerThroughput;
+        _containerId = config.Value.ContainerId;
+        _throughput = config.Value.Throughput;
         _batchSize = config.Value.InsertBatchSize;
     }
 
