@@ -116,7 +116,7 @@ public class DobihRecord
     public string _Section { get; set; }
 
     [Name("Parent (Ma)")]
-    public int ParentMa { get; set; }
+    public int? ParentMa { get; set; }
 
     [Name("Parent name (Ma)")]
     public string? ParentNameMa { get; set; }

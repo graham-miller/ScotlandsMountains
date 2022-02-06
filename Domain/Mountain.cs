@@ -1,5 +1,4 @@
-﻿using Microsoft.Azure.Cosmos.Spatial;
-using ScotlandsMountains.Domain.Values;
+﻿using ScotlandsMountains.Domain.Values;
 
 namespace ScotlandsMountains.Domain;
 
@@ -7,7 +6,7 @@ public class Mountain : Entity
 {
     public List<string> Aliases { get; set; }
 
-    public Point Location { get; set; }
+    public Location Location { get; set; }
 
     public int DobihId { get; set; }
 
@@ -21,13 +20,13 @@ public class Mountain : Entity
 
     public string Observations { get; set; }
 
-    public Mountain Parent { get; set; }
+    public MountainSummary? Parent { get; set; }
 
-    public Section Section { get; set; }
+    public EntitySummary Section { get; set; }
 
-    public List<County> Counties { get; set; }
+    public List<EntitySummary> Counties { get; set; }
 
-    public List<string> Classifications { get; set; }
+    public List<EntitySummary> Classifications { get; set; }
 
-    public List<string> Maps { get; set; }
+    public List<EntitySummary> Maps { get; set; }
 }

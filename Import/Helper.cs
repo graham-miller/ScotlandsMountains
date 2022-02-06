@@ -1,4 +1,5 @@
 ﻿using ScotlandsMountains.Domain;
+using ScotlandsMountains.Domain.Values;
 
 namespace ScotlandsMountains.Import;
 
@@ -41,10 +42,32 @@ internal static class Helper
         return s.ToMap("Explorer", "Ordnance Survey", Scale1To25000);
     }
 
+    public static Mountain ToMountain(this DobihRecord @record)
+    {
+        return new Mountain
+        {
+            Name = @record.Name,
+            Aliases = @record.Aliases,
+            Location = new Location(@record.Longitude, @record.Latitude),
+            DobihId = @record.Number,
+            GridRef = @record.GridRef,
+            Height = new Height{ Metres = @record.Metres },
+            Prominence = new Prominence
+            {
+                MeasuredFrom = @record.ColGridRef,
+                MeasuredFromHeight = new Height { Metres = @record.ColHeight },
+                Metres = @record.Drop
+            },
+            Features = @record.Feature,
+            Observations = @record.Observations
+        };
+    }
+
     private static Map ToMap(this string code, string series, string publisher, decimal scale)
     {
         return new Map
         {
+            Name = $"OS {series} {code}",
             Code = code,
             Publisher = publisher,
             Series = series,
