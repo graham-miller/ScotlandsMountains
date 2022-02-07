@@ -27,8 +27,9 @@ public class HillCsvZipImporter
         _countiesProvider = new CountiesProvider(_counties);
         GetMaps();
         CreateEntityLinks();
+        UpdateMountainGroups();
 
-        // WriteDobihRecordsToFile(records);
+        // WriteDobihRecordsToFile();
     }
 
     private void ReadRecords()
@@ -101,54 +102,72 @@ public class HillCsvZipImporter
 
         LinkParentMountains(mountainDobihLinks);
 
-        // TODO link mountains to Classifications
-        // TODO link mountains to Sections
-        // TODO link mountains to Counties
-        // TODO link mountains to Maps
-
         Mountains = mountainDobihLinks.Values
             .Select(x => x.Mountain)
             .OrderByDescending(x => x.Height.Metres)
             .ToList();
-
-        // TODO set Classifications
-        // TODO set Sections
-        // TODO set Counties
-        // TODO set Maps
+        Classifications = _classificationsProvider.GetClassifications();
+        Sections = _sections!.Values.OrderBy(x => x.Code).ToList();
+        Counties = _counties;
+        Maps = _maps1To50K!.Values.Concat(_maps1To25K!.Values).ToList();
     }
 
     private void LinkClassifications(MountainDobihLink link)
     {
-        link.Mountain.Classifications = _classificationsProvider.GetClassifications(link.Record)
+        var classifications = _classificationsProvider.GetClassifications(link.Record);
+
+        link.Mountain.Classifications = classifications
             .OrderBy(x => x.DisplayOrder)
-            .Select(x => new EntitySummary(x))
+            .Select(x => new ClassificationSummary(x))
             .ToList();
+
+        foreach (var classification in classifications)
+        {
+            classification.Mountains.Add(new MountainSummary(link.Mountain));
+        }
     }
 
     private void LinkSection(MountainDobihLink link)
     {
-        link.Mountain.Section = new EntitySummary(_sections[link.Record.Region]);
+        var section = _sections![link.Record.Region];
+        
+        link.Mountain.Section = new EntitySummary(section);
+        
+        section.Mountains.Add(new MountainSummary(link.Mountain));
     }
 
     private void LinkCounties(MountainDobihLink link)
     {
-        link.Mountain.Counties = _countiesProvider.GetCounties(link.Record)
+        var counties = _countiesProvider!.GetCounties(link.Record);
+
+        link.Mountain.Counties = counties
             .OrderBy(x => x.Name)
             .Select(x => new EntitySummary(x))
             .ToList();
+
+        foreach (var county in counties)
+        {
+            county.Mountains.Add(new MountainSummary(link.Mountain));
+        }
     }
 
     private void LinkMaps(MountainDobihLink link)
     {
-        link.Mountain.Maps = link.Record.Maps1To50K
-            .Select(x => new EntitySummary(_maps1To50K[x]))
-            .OrderBy(x => x.Name)
+        var maps = link.Record.Maps1To50K
+            .Select(x => _maps1To50K![x])
             .Concat(
                 link.Record.Maps1To25K
-                    .Select(x => new EntitySummary(_maps1To25K[x]))
-                    .OrderBy(x => x.Name)
-                )
+                    .Select(x => _maps1To25K![x]))
             .ToList();
+
+        link.Mountain.Maps = maps
+            .Select(x => new EntitySummary(x))
+            .ToList();
+
+        foreach (var map in maps)
+        {
+            map.Mountains.Add(new MountainSummary(link.Mountain));
+        }
     }
 
     private void LinkParentMountains(Dictionary<int, MountainDobihLink> links)
@@ -170,6 +189,22 @@ public class HillCsvZipImporter
         }
     }
 
+    private void UpdateMountainGroups()
+    {
+        UpdateMountainGroups(Classifications);
+        UpdateMountainGroups(Counties);
+        UpdateMountainGroups(Sections);
+        UpdateMountainGroups(Maps);
+
+        Classifications.ForEach(x => x.Description = string.Format(x.Description, x.MountainsCount));
+    }
+
+    private void UpdateMountainGroups<T>(List<T> groups) where T : MountainGroup
+    {
+        foreach (var @group in groups)
+            @group.MountainsCount = @group.Mountains.Count;
+    }
+
     // ReSharper disable once UnusedMember.Local
     private void WriteDobihRecordsToFile()
     {
@@ -179,8 +214,8 @@ public class HillCsvZipImporter
             WriteIndented = true
         };
 
-        var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "mountain-records.json");
-        var json = JsonSerializer.Serialize(_records, jsonOptions);
+        var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "mountains.json");
+        var json = JsonSerializer.Serialize(Mountains, jsonOptions);
         File.WriteAllText(path, json);
     }
 

@@ -11,6 +11,14 @@ internal class ClassificationsProvider
         _providers = CreateProviders();
     }
 
+    public List<Classification> GetClassifications()
+    {
+        return _providers
+            .Select(x => x.Classification)
+            .OrderBy(x => x.DisplayOrder)
+            .ToList();
+    }
+
     public List<Classification> GetClassifications(DobihRecord record)
     {
         return _providers

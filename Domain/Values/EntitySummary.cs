@@ -2,10 +2,10 @@
 
 public class EntitySummary
 {
-    public EntitySummary(Entity entity)
+    public EntitySummary(Entity classification)
     {
-        Id = entity.Id;
-        Name = entity.Name;
+        Id = classification.Id;
+        Name = classification.Name;
     }
 
     public Guid Id { get; set; }

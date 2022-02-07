@@ -1,8 +1,5 @@
-﻿using ScotlandsMountains.Domain.Values;
+﻿namespace ScotlandsMountains.Domain;
 
-namespace ScotlandsMountains.Domain;
-
-public class County : Entity
+public class County : MountainGroup
 {
-    public List<MountainSummary> Mountains { get; set; }
 }

@@ -1,10 +1,6 @@
-﻿using ScotlandsMountains.Domain.Values;
+﻿namespace ScotlandsMountains.Domain;
 
-namespace ScotlandsMountains.Domain;
-
-public class Section : Entity
+public class Section : MountainGroup
 {
     public string Code { get; set; }
-
-    public List<MountainSummary> Mountains { get; set; }
 }

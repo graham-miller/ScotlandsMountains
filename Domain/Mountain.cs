@@ -26,7 +26,7 @@ public class Mountain : Entity
 
     public List<EntitySummary> Counties { get; set; }
 
-    public List<EntitySummary> Classifications { get; set; }
+    public List<ClassificationSummary> Classifications { get; set; }
 
     public List<EntitySummary> Maps { get; set; }
 }
