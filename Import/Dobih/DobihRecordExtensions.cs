@@ -1,9 +1,6 @@
-﻿using ScotlandsMountains.Domain;
-using ScotlandsMountains.Domain.Values;
+﻿namespace ScotlandsMountains.Import.Dobih;
 
-namespace ScotlandsMountains.Import;
-
-internal static class Helper
+internal static class DobihRecordExtensions
 {
     private const decimal Scale1To50000 = (1m / 50_000m);
     private const decimal Scale1To25000 = (1m / 25_000m);

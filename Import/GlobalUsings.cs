@@ -7,3 +7,6 @@ global using ScotlandsMountains.Import.Files;
 global using CsvHelper.Configuration.Attributes;
 global using ScotlandsMountains.Import.TypeConverters;
 global using CsvHelper.TypeConversion;
+global using ScotlandsMountains.Domain;
+global using ScotlandsMountains.Domain.Values;
+global using ScotlandsMountains.Import.Dobih;

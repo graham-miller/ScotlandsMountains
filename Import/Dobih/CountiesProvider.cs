@@ -1,6 +1,4 @@
-﻿using ScotlandsMountains.Domain;
-
-namespace ScotlandsMountains.Import;
+﻿namespace ScotlandsMountains.Import.Dobih;
 
 internal class CountiesProvider
 {

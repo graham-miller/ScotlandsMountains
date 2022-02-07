@@ -1,4 +1,4 @@
-﻿namespace ScotlandsMountains.Import;
+﻿namespace ScotlandsMountains.Import.Dobih;
 
 public class DobihRecordMap : ClassMap<DobihRecord>
 {

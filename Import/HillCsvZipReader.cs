@@ -1,9 +1,6 @@
-﻿using ScotlandsMountains.Domain;
-using ScotlandsMountains.Domain.Values;
+﻿namespace ScotlandsMountains.Import;
 
-namespace ScotlandsMountains.Import;
-
-public class HillCsvZipImporter
+public class HillCsvZipReader : IDobihData
 {
     private Dictionary<int, DobihRecord>? _records;
     private Dictionary<string, Section>? _sections;
@@ -13,13 +10,13 @@ public class HillCsvZipImporter
     private Dictionary<string, Map>? _maps1To50K;
     private Dictionary<string, Map>? _maps1To25K;
 
-    public List<Mountain> Mountains { get; set; } = new();
-    public List<Classification> Classifications { get; set; } = new();
-    public List<Section> Sections { get; set; } = new();
-    public List<County> Counties { get; set; } = new();
-    public List<Map> Maps { get; set; } = new();
+    public List<Mountain> Mountains { get; private set; } = new();
+    public List<Classification> Classifications { get; private set; } = new();
+    public List<Section> Sections { get; private set; } = new();
+    public List<County> Counties { get; private set; } = new();
+    public List<Map> Maps { get; private set; } = new();
 
-    public void Import()
+    public void Read()
     {
         ReadRecords();
         GetSections();
@@ -170,7 +167,7 @@ public class HillCsvZipImporter
         }
     }
 
-    private void LinkParentMountains(Dictionary<int, MountainDobihLink> links)
+    private static void LinkParentMountains(Dictionary<int, MountainDobihLink> links)
     {
         foreach (var link in links.Values)
         {
@@ -227,8 +224,8 @@ public class HillCsvZipImporter
             Record = @record;
         }
 
-        public Mountain Mountain { get; set; }
+        public Mountain Mountain { get; }
 
-        public DobihRecord Record { get; set; }
+        public DobihRecord Record { get; }
     }
 }

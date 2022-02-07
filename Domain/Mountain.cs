@@ -1,6 +1,4 @@
-﻿using ScotlandsMountains.Domain.Values;
-
-namespace ScotlandsMountains.Domain;
+﻿namespace ScotlandsMountains.Domain;
 
 public class Mountain : Entity
 {
