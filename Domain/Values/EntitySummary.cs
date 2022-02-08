@@ -2,6 +2,8 @@
 
 public class EntitySummary
 {
+    public EntitySummary() { }
+
     public EntitySummary(Entity classification)
     {
         Id = classification.Id;
@@ -10,5 +12,5 @@ public class EntitySummary
 
     public Guid Id { get; set; }
 
-    public string Name { get; set; }
+    public string? Name { get; set; }
 }

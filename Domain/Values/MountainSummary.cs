@@ -2,6 +2,8 @@
 
 public class MountainSummary : EntitySummary
 {
+    public MountainSummary() { }
+
     public MountainSummary(Mountain mountain)
         : base(mountain)
     {

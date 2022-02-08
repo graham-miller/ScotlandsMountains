@@ -2,6 +2,8 @@
 
 public class ClassificationSummary : EntitySummary
 {
+    public ClassificationSummary() { }
+
     public ClassificationSummary(Classification classification)
         : base(classification)
     {

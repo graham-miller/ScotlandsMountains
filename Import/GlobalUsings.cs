@@ -10,3 +10,6 @@ global using CsvHelper.TypeConversion;
 global using ScotlandsMountains.Domain;
 global using ScotlandsMountains.Domain.Values;
 global using ScotlandsMountains.Import.Dobih;
+global using Humanizer;
+global using Microsoft.Azure.Cosmos;
+

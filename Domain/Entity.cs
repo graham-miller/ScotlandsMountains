@@ -5,7 +5,7 @@ public abstract class Entity
     protected Entity()
     {
         Id = Guid.NewGuid();
-        PartitionKey = GetType().Name;
+        PartitionKey = GetType().Name.Camelize();
     }
 
     public Guid Id { get; set; }

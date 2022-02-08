@@ -5,4 +5,4 @@ var reader = new HillCsvZipReader();
 reader.Read();
 
 var writer = new CosmosDbWriter();
-writer.Write(reader);
+await writer.Write(reader);

@@ -12,4 +12,8 @@
     <Content Remove="C:\Users\Graham\.nuget\packages\microsoft.azure.cosmos\3.24.0\contentFiles\any\netstandard2.0\ThirdPartyNotice.txt" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Humanizer.Core" Version="2.14.1" />
+  </ItemGroup>
+
 </Project>
