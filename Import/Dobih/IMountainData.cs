@@ -1,6 +1,6 @@
 ﻿namespace ScotlandsMountains.Import.Dobih;
 
-public interface IDobihData
+public interface IMountainData
 {
     List<Mountain> Mountains { get; }
     List<Classification> Classifications { get; }

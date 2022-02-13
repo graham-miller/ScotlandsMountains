@@ -16,6 +16,7 @@
   <ItemGroup>
     <PackageReference Include="Humanizer.Core" Version="2.14.1" />
     <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.24.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
     <PackageReference Include="morelinq" Version="3.3.2" />
   </ItemGroup>

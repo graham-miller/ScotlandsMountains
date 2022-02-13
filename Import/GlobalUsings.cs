@@ -13,5 +13,7 @@ global using ScotlandsMountains.Import.Dobih;
 global using Humanizer;
 global using Microsoft.Azure.Cosmos;
 global using MoreLinq;
-
-
+global using Microsoft.Extensions.Logging;
+global using Microsoft.Extensions.Options;
+global using System.Net;
+global using ScotlandsMountains.Data;

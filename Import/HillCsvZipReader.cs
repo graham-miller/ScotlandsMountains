@@ -1,7 +1,8 @@
 ﻿namespace ScotlandsMountains.Import;
 
-public class HillCsvZipReader : IDobihData
+public class HillCsvZipReader : IMountainData
 {
+    private readonly ILogger _logger;
     private Dictionary<int, DobihRecord>? _records;
     private Dictionary<string, Section>? _sections;
     private List<County> _counties = new();
@@ -9,6 +10,11 @@ public class HillCsvZipReader : IDobihData
     private CountiesProvider? _countiesProvider;
     private Dictionary<string, Map>? _maps1To50K;
     private Dictionary<string, Map>? _maps1To25K;
+
+    public HillCsvZipReader(ILogger logger)
+    {
+        _logger = logger;
+    }
 
     public List<Mountain> Mountains { get; private set; } = new();
     public List<Classification> Classifications { get; private set; } = new();
@@ -18,6 +24,8 @@ public class HillCsvZipReader : IDobihData
 
     public void Read()
     {
+        _logger.LogInformation("Started reading hillcsv.zip");
+
         ReadRecords();
         GetSections();
         GetCounties();
@@ -27,6 +35,7 @@ public class HillCsvZipReader : IDobihData
         UpdateMountainGroups();
 
         // WriteDobihRecordsToFile();
+        _logger.LogInformation("Completed reading hillcsv.zip");
     }
 
     private void ReadRecords()
