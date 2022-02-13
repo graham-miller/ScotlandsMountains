@@ -2,11 +2,11 @@
 
 internal class MountainDataWriter
 {
-    private readonly Repository _repository;
+    private readonly ImportRepository _repository;
 
     public MountainDataWriter(IOptions<CosmosConfig> config, ILogger logger)
     {
-        _repository = new Repository(config, logger);
+        _repository = new ImportRepository(config, logger);
     }
 
     public async Task Write(IMountainData data)

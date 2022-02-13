@@ -1,12 +1,12 @@
 ﻿namespace ScotlandsMountains.Data;
 
-public class Repository
+public class ImportRepository
 {
     private readonly ILogger _logger;
     private readonly CosmosConfig _config;
     private readonly CosmosClient _client;
 
-    public Repository(IOptions<CosmosConfig> config, ILogger logger)
+    public ImportRepository(IOptions<CosmosConfig> config, ILogger logger)
     {
         _logger = logger;
         _config = config.Value;
