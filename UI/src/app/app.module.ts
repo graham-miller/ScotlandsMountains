@@ -7,6 +7,7 @@ import { LayoutModule } from './layout/layout.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 import { Routes } from './app.routes';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { Routes } from './app.routes';
     LayoutModule,
     RouterModule.forRoot(Routes),
     BrowserAnimationsModule,
-    ModalModule
+    ModalModule,
+    HttpClientModule
   ],
   providers: [BsModalService],
   bootstrap: [AppComponent]
