@@ -12,9 +12,9 @@ export class Page1Component implements OnInit {
   constructor(private mountains: MountainDataService) {}
   
   ngOnInit(): void {
-    this.mountains.getClassifications().subscribe(x => {
-      this.test = JSON.stringify(x);
-    });
+    // this.mountains.getClassifications().subscribe(x => {
+    //   this.test = JSON.stringify(x);
+    // });
   }
 }
 Component
