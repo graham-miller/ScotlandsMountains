@@ -12,5 +12,5 @@ public abstract class Entity
 
     public string PartitionKey { get; set; }
 
-    public string? Name { get; set; }
+    public string Name { get; set; }
 }
