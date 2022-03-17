@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MountainsService } from './mountains.service';
+import { MountainDataService } from './mountain-data.service';
 
-describe('MountainsService', () => {
-  let service: MountainsService;
+describe('MountainDataService', () => {
+  let service: MountainDataService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(MountainsService);
+    service = TestBed.inject(MountainDataService);
   });
 
   it('should be created', () => {
