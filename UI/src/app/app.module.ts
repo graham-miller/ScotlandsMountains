@@ -9,6 +9,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { ClassificationsComponent } from './components/classifications/classifications.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { MetersToFeetPipe } from './pipes/meters-to-feet.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,12 +18,14 @@ import { LoadingComponent } from './components/loading/loading.component';
     ClassificationsComponent,
     PageNotFoundComponent,
     NavBarComponent,
-    LoadingComponent
+    LoadingComponent,
+    MetersToFeetPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     NgbModule
   ],
   providers: [],
