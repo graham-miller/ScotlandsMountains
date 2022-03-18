@@ -41,16 +41,16 @@ export class ClassificationsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    const params$ = this.route.params.pipe(first());
-    const classifications$ = this.initialDataService.getClassifications().pipe(first());
-
-    zip(params$, classifications$)
+    this.initialDataService.getClassifications()
       .pipe(first())
-      .subscribe(pair => {
-        this.selectedClassificationId = pair[0]['id'];
-        this.classifications = pair[1];
-        this.loadClassification();
-      });
+      .subscribe(data => {
+        this.classifications = data;
+        this.route.params.subscribe(params => {
+          this.selectedClassificationId = params['id'];
+          this.isLoading = true;
+          this.loadClassification();
+        });
+      })
   }
 
   selectPage(page: string) {

@@ -3,13 +3,21 @@
 </div>
 
 <div *ngIf="!isLoading">
-    <select class="form-select w-auto">
-        <option *ngFor="let classification of classifications" value="classification.id">
-            {{classification.name}} ({{classification.mountainsCount | number}})
-        </option>
-    </select>
 
-    <h2>{{selectedClassification?.name}}</h2>
+    <div ngbDropdown class="d-inline-block mb-3">
+        <button class="btn btn-outline-primary btn-lg" id="classificationSelector" ngbDropdownToggle>
+            {{selectedClassification?.name}}
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                {{selectedClassification?.mountainsCount | number}}
+            </span>
+        </button>
+        <div ngbDropdownMenu aria-labelledby="classificationSelector">
+            <button ngbDropdownItem *ngFor="let classification of classifications"  routerLink="../{{classification.id}}">
+                {{classification.name}}
+                <span class="badge rounded-pill bg-light text-dark">{{classification.mountainsCount | number}}</span>
+            </button>
+        </div>
+    </div>
 
     <p>{{selectedClassification?.description}}</p>
 
@@ -21,9 +29,9 @@
         </colgroup>
         <thead style="border:none;">
             <tr>
-                <th sortable="position" class="numeric" direction="asc" (sort)="sortMountains($event)">Position <span></span></th>
-                <th sortable="name" class="alpha" (sort)="sortMountains($event)">Name <span></span></th>
-                <th sortable="height" class="numeric" (sort)="sortMountains($event)">Height <span></span></th>
+                <th sortable="position" class="numeric" direction="asc" (sort)="sortMountains($event)">Position</th>
+                <th sortable="name" class="alpha" (sort)="sortMountains($event)">Name</th>
+                <th sortable="height" class="numeric" (sort)="sortMountains($event)">Height</th>
             </tr>
         </thead>
         <tbody>
