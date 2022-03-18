@@ -11,6 +11,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { MetersToFeetPipe } from './pipes/meters-to-feet.pipe';
 import { FormsModule } from '@angular/forms';
+import { SortableHeader } from './directives/sortable-header';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     PageNotFoundComponent,
     NavBarComponent,
     LoadingComponent,
-    MetersToFeetPipe
+    MetersToFeetPipe,
+    SortableHeader
   ],
   imports: [
     BrowserModule,
