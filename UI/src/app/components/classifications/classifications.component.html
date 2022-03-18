@@ -1,0 +1,15 @@
+<div *ngIf="isLoading">
+    <loading></loading>
+</div>
+
+<div *ngIf="!isLoading">
+    <select class="form-select w-auto">
+        <option
+            *ngFor="let classification of classifications"
+            value="classification.id">
+            {{classification.name}} ({{classification.mountainsCount | number}})
+        </option>
+    </select>
+    
+    {{selectedClassification?.mountains?.length}}
+</div>

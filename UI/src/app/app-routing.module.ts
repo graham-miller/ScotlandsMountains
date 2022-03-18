@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { Page1Component } from './page1/page1.component';
-import { Page2Component } from './page2/page2.component';
+import { ClassificationsComponent } from './components/classifications/classifications.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  {path: 'page-1', component: Page1Component},
-  {path: 'page-2', component: Page2Component},
-  {path: '', redirectTo: '/page-1', pathMatch: 'full'},
+  {path: 'classifications', component: ClassificationsComponent},
+  {path: 'classifications/:id', component: ClassificationsComponent},
+  {path: '', redirectTo: '/classifications', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent}
 ];
 
