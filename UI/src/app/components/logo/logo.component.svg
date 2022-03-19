@@ -1,4 +1,4 @@
-<svg [attr.width]="width" [attr.height]="height" viewBox="0 0 37 45" xmlns="http://www.w3.org/2000/svg">
+<svg [attr.width]="width" [attr.height]="height" viewBox="0 0 40 45" xmlns="http://www.w3.org/2000/svg">
 
   <path d="M 3 37 
            L 10 12
