@@ -12,7 +12,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let mountain of pageData">
+        <tr *ngFor="let mountain of pageData" routerLink="/mountains/{{mountain.id}}">
             <td>{{mountain.position}}</td>
             <td>{{mountain.name}}</td>
             <td>{{mountain.height | number:'1.0-0'}}m ({{mountain.height | metersToFeet | number:'1.0-0'}}ft)</td>

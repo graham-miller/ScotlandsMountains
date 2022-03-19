@@ -2,7 +2,7 @@ import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
 import { Classification } from 'src/app/models/classification';
-import { ClassificationSummary } from 'src/app/models/classification-summary';
+import { ClassificationSummary } from 'src/app/models/classification';
 import { InitialDataService } from 'src/app/services/initial-data.service';
 import { MountainDataService } from 'src/app/services/mountain-data.service';
 

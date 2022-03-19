@@ -1,3 +1,12 @@
+import { MountainSummary } from "./mountain";
+
+export interface ClassificationSummary {
+    id: string;
+    name: string;
+    description: string;
+    mountainsCount: number;
+}
+
 export interface Classification {
     id: string;
     name: string;
@@ -5,12 +14,4 @@ export interface Classification {
     description: string;
     mountainsCount: number;
     mountains: MountainSummary[];
-}
-
-export interface MountainSummary {
-    id: string;
-    name: string;
-    height: number;
-    Longitude: number;
-    Latitude: number;
 }

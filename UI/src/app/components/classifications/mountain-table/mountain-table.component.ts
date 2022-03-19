@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, QueryList, SimpleChanges, ViewChildren } from '@angular/core';
 import { SortableHeader, SortDirection, SortEvent } from 'src/app/directives/sortable-header';
-import { MountainSummary } from 'src/app/models/classification';
+import { MountainSummary } from 'src/app/models/mountain';
 
 interface MountainSummaryWithPosition extends MountainSummary {
   position: number;
