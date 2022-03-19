@@ -45,9 +45,9 @@
 
     <div class="row">
         <div class="col-md-4">
-            <select class="form-select w-auto" [(ngModel)]="pageSize" (ngModelChange)="pageMountains()">
-                <option [ngValue]="10">10 items per page</option>
-                <option [ngValue]="50">50 items per page</option>
+            Page size <select class="form-select w-auto d-inline-block" [(ngModel)]="pageSize" (ngModelChange)="pageMountains()">
+                <option [ngValue]="10">10</option>
+                <option [ngValue]="50">50</option>
             </select>
         </div>
 
