@@ -15,6 +15,7 @@ import { SortableHeader } from './directives/sortable-header';
 import { MountainTableComponent } from './components/mountain-table/mountain-table.component';
 import { MountainComponent } from './components/mountain/mountain.component';
 import { SentencePipe } from './pipes/sentence.pipe';
+import { LogoComponent } from './components/logo/logo.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SentencePipe } from './pipes/sentence.pipe';
     SortableHeader,
     MountainTableComponent,
     MountainComponent,
-    SentencePipe
+    SentencePipe,
+    LogoComponent
   ],
   imports: [
     BrowserModule,
