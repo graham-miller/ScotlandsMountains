@@ -21,6 +21,8 @@
 
     <p>{{selectedClassification?.description}}</p>
 
+    <mountain-table></mountain-table>
+
     <table class="table table-hover">
         <colgroup>
             <col style="width:20%;">
@@ -45,10 +47,15 @@
 
     <div class="row">
         <div class="col-md-4">
-            Page size <select class="form-select w-auto d-inline-block" [(ngModel)]="pageSize" (ngModelChange)="pageMountains()">
-                <option [ngValue]="10">10</option>
-                <option [ngValue]="50">50</option>
-            </select>
+            Page size <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-secondary" id="pageSizeSelector" ngbDropdownToggle>
+                    {{pageSize}}
+                </button>
+                <div ngbDropdownMenu aria-labelledby="pageSizeSelector">
+                    <button ngbDropdownItem (click)="pageSize = 10; pageMountains()">10</button>
+                    <button ngbDropdownItem (click)="pageSize = 50; pageMountains()">50</button>
+                </div>
+            </div>
         </div>
 
         <div class="col-md-4 d-flex justify-content-md-center mt-3 mt-md-0">
@@ -56,11 +63,14 @@
                 [pageSize]="pageSize" (pageChange)="pageMountains()" [directionLinks]="false" [boundaryLinks]="false" [ellipses]="false">
                 <ng-template ngbPaginationPages let-page let-pages="pages">
                     <li class="page-item px-3">
-                        Page
-                        <select #i class="form-select w-auto d-inline-block" [(ngModel)]="pageNumber" (ngModelChange)="pageMountains()">
-                            <option *ngFor="let i of pages" [ngValue]="i">{{i}}</option>
-                        </select>
-                        of {{pages.length}}
+                        Page <div ngbDropdown class="d-inline-block">
+                            <button class="btn btn-outline-secondary" id="pageSizeSelector" ngbDropdownToggle>
+                                {{pageNumber}}
+                            </button>
+                            <div ngbDropdownMenu aria-labelledby="pageSizeSelector" style="max-height:10em;overflow-y:auto;">
+                                <button ngbDropdownItem *ngFor="let i of pages" (click)="pageNumber = i; pageMountains()">{{i}}</button>
+                            </div>
+                        </div> of {{pages.length}}
                     </li>
                 </ng-template>
             </ngb-pagination>
@@ -76,10 +86,10 @@
                     <i class="bi bi-skip-end-fill"></i>
                 </ng-template>
                 <ng-template ngbPaginationPrevious>
-                    <i class="bi bi-caret-left-fill"></i>
+                    <i class="bi bi-skip-backward-fill"></i>
                 </ng-template>
                 <ng-template ngbPaginationNext>
-                    <i class="bi bi-caret-right-fill"></i>
+                    <i class="bi bi-skip-forward-fill"></i>
                 </ng-template>
                 <ng-template ngbPaginationPages let-page let-pages="pages">
                 </ng-template>

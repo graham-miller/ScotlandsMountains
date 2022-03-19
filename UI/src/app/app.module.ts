@@ -12,6 +12,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { MetersToFeetPipe } from './pipes/meters-to-feet.pipe';
 import { FormsModule } from '@angular/forms';
 import { SortableHeader } from './directives/sortable-header';
+import { MountainTableComponent } from './components/classifications/mountain-table/mountain-table.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SortableHeader } from './directives/sortable-header';
     NavBarComponent,
     LoadingComponent,
     MetersToFeetPipe,
-    SortableHeader
+    SortableHeader,
+    MountainTableComponent
   ],
   imports: [
     BrowserModule,
