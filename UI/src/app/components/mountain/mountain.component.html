@@ -8,8 +8,10 @@
     </h1>
 
     <dl>
-        <dt>Other names</dt>
-        <dd><span *ngFor="let alias of mountain?.aliases">{{alias}},</span></dd>
+        <dt *ngIf="(mountain?.aliases?.length || 0) > 0">Other names</dt>
+        <dd *ngIf="(mountain?.aliases?.length || 0) > 0">
+            <span *ngFor="let alias of mountain?.aliases">{{alias}}</span>
+        </dd>
     
         <dt>Height</dt>
         <dd>{{mountain?.height || 0 | number:'1.0-0'}}m ({{mountain?.height || 0 | metersToFeet | number:'1.0-0'}}ft)</dd>
@@ -33,19 +35,31 @@
             <p>{{mountain?.observations | sentence}}</p>
         </dd>
     
-        <dt>Parent mountain</dt>
-        <dd></dd>
+        <dt *ngIf="mountain?.parent">Parent mountain</dt>
+        <dd *ngIf="mountain?.parent"><a routerLink="/mountains/{{mountain?.parent?.id}}">{{mountain?.parent?.name}}</a></dd>
     
         <dt>Section</dt>
-        <dd></dd>
-    
-        <dt>Counties</dt>
-        <dd></dd>
+        <dd><a routerLink="/sections/{{mountain?.section?.id}}">{{mountain?.section?.name}}</a></dd>
     
         <dt>Classifications</dt>
-        <dd></dd>
+        <dd>
+            <span *ngFor="let classification of mountain?.classifications">
+                <a routerLink="/classifications/{{classification.id}}">{{classification.name}}</a>
+            </span>
+        </dd>
     
         <dt>Maps</dt>
-        <dd></dd>
+        <dd>
+            <span *ngFor="let map of mountain?.maps">
+                <a routerLink="/maps/{{map.id}}">{{map.name}}</a>
+            </span>
+        </dd>
+    
+        <dt>Counties</dt>
+        <dd>
+            <span *ngFor="let county of mountain?.counties">
+                <a routerLink="/counties/{{county.id}}">{{county.name}}</a>
+            </span>
+        </dd>
     </dl>    
 </div>
