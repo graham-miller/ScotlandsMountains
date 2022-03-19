@@ -47,7 +47,14 @@ public class MountainGroupsRepository
                 c.Name,
                 c.SingularName,
                 c.Description,
-                c.Mountains,
+                Mountains = c.Mountains.Select(m => new
+                {
+                    m.Id,
+                    m.Name,
+                    Height = m.Height.Metres,
+                    Longitude = m.Location.Coordinates[0],
+                    Latitude = m.Location.Coordinates[1]
+                }),
                 c.MountainsCount
             })
             .ToFeedIterator();
@@ -73,10 +80,13 @@ public class MountainGroupsRepository
                 m.Id,
                 m.Name,
                 m.Aliases,
-                m.Location,
                 m.GridRef,
-                m.Height,
-                m.Prominence,
+                Height = m.Height.Metres,
+                Longitude = m.Location.Coordinates[0],
+                Latitude = m.Location.Coordinates[1],
+                Prominence = m.Prominence.Metres,
+                ProminenceFrom = m.Prominence.MeasuredFrom,
+                ProminenceFromHeight = m.Prominence.MeasuredFromHeight.Metres,
                 m.Features,
                 m.Observations,
                 m.Parent,
