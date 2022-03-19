@@ -13,6 +13,8 @@ import { MetersToFeetPipe } from './pipes/meters-to-feet.pipe';
 import { FormsModule } from '@angular/forms';
 import { SortableHeader } from './directives/sortable-header';
 import { MountainTableComponent } from './components/classifications/mountain-table/mountain-table.component';
+import { MountainComponent } from './components/mountain/mountain.component';
+import { SentencePipe } from './pipes/sentence.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { MountainTableComponent } from './components/classifications/mountain-ta
     LoadingComponent,
     MetersToFeetPipe,
     SortableHeader,
-    MountainTableComponent
+    MountainTableComponent,
+    MountainComponent,
+    SentencePipe
   ],
   imports: [
     BrowserModule,

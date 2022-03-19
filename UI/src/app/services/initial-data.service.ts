@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { first } from 'rxjs/operators';
-import { ClassificationSummary } from '../models/classification-summary';
+import { ClassificationSummary } from '../models/classification';
 import { MountainDataService } from './mountain-data.service';
 
 @Injectable({

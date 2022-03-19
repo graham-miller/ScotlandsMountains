@@ -1,0 +1,51 @@
+<div *ngIf="isLoading">
+    <loading></loading>
+</div>
+
+<div *ngIf="!isLoading">
+    <h1>
+        {{mountain?.name}}
+    </h1>
+
+    <dl>
+        <dt>Other names</dt>
+        <dd><span *ngFor="let alias of mountain?.aliases">{{alias}},</span></dd>
+    
+        <dt>Height</dt>
+        <dd>{{mountain?.height || 0 | number:'1.0-0'}}m ({{mountain?.height || 0 | metersToFeet | number:'1.0-0'}}ft)</dd>
+    
+        <dt>Grid ref.</dt>
+        <dd>{{mountain?.gridRef}}</dd>
+    
+        <dt>Coordinates</dt>
+        <dd>({{mountain?.latitude}}, {{mountain?.longitude}})</dd>
+    
+        <dt>Prominence</dt>
+        <dd>
+            {{mountain?.prominence || 0 | number:'1.0-0'}}m ({{mountain?.prominence || 0 | metersToFeet | number:'1.0-0'}}ft)
+            from {{mountain?.prominenceFrom}} at
+            {{mountain?.prominenceFromHeight || 0 | number:'1.0-0'}}m ({{mountain?.prominenceFromHeight || 0 | metersToFeet | number:'1.0-0'}}ft)
+        </dd>
+    
+        <dt>Summit</dt>
+        <dd>
+            <p>{{mountain?.features | sentence}}</p>
+            <p>{{mountain?.observations | sentence}}</p>
+        </dd>
+    
+        <dt>Parent mountain</dt>
+        <dd></dd>
+    
+        <dt>Section</dt>
+        <dd></dd>
+    
+        <dt>Counties</dt>
+        <dd></dd>
+    
+        <dt>Classifications</dt>
+        <dd></dd>
+    
+        <dt>Maps</dt>
+        <dd></dd>
+    </dl>    
+</div>
