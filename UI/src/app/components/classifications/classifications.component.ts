@@ -7,8 +7,6 @@ import { ClassificationSummary } from 'src/app/models/classification-summary';
 import { InitialDataService } from 'src/app/services/initial-data.service';
 import { MountainDataService } from 'src/app/services/mountain-data.service';
 
-const FILTER_PAG_REGEX = /[^0-9]/g;
-
 interface MountainSummaryWithPosition extends MountainSummary {
   position: number;
 }
@@ -53,20 +51,12 @@ export class ClassificationsComponent implements OnInit {
       })
   }
 
-  selectPage(page: string) {
-    this.pageNumber = parseInt(page, 10) || 1;
-  }
-
-  formatPageInput(input: HTMLInputElement) {
-    input.value = input.value.replace(FILTER_PAG_REGEX, '');
-  }
-
   pageMountains() {
     this.updatePageData();
   }
 
   sortMountains({ column, direction }: SortEvent) {
-    this.pageNumber = 1;    
+    this.pageNumber = 1;
     this.sortColumn = column;
     this.sortDirection = direction;
     this.resetOtherSortHeaders();
@@ -80,7 +70,8 @@ export class ClassificationsComponent implements OnInit {
       this.mountainsDataService.getClassification(this.selectedClassificationId)
         .subscribe(data => {
           this.selectedClassification = data;
-          this.pageMountains();
+          this.pageNumber = 1;
+          this.updatePageData();
           this.isLoading = false;
         });
     }
