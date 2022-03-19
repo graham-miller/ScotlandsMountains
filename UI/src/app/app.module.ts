@@ -1,29 +1,35 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppBarComponent } from './app-bar/app-bar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { Page1Component } from './page1/page1.component';
-import { Page2Component } from './page2/page2.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { ClassificationsComponent } from './components/classifications/classifications.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { MetersToFeetPipe } from './pipes/meters-to-feet.pipe';
+import { FormsModule } from '@angular/forms';
+import { SortableHeader } from './directives/sortable-header';
+import { MountainTableComponent } from './components/classifications/mountain-table/mountain-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AppBarComponent,
-    Page1Component,
-    Page2Component,
+    ClassificationsComponent,
     PageNotFoundComponent,
-    NavBarComponent
+    NavBarComponent,
+    LoadingComponent,
+    MetersToFeetPipe,
+    SortableHeader,
+    MountainTableComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     NgbModule
   ],
   providers: [],

@@ -1,0 +1,26 @@
+<div *ngIf="isLoading">
+    <loading></loading>
+</div>
+
+<div *ngIf="!isLoading">
+
+    <div ngbDropdown class="d-inline-block mb-3">
+        <button class="btn btn-outline-primary btn-lg" id="classificationSelector" ngbDropdownToggle>
+            {{selectedClassification?.name}}
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                {{selectedClassification?.mountainsCount | number}}
+            </span>
+        </button>
+        <div ngbDropdownMenu aria-labelledby="classificationSelector">
+            <button ngbDropdownItem *ngFor="let classification of classifications"  routerLink="../{{classification.id}}">
+                {{classification.name}}
+                <span class="badge rounded-pill bg-light text-dark">{{classification.mountainsCount | number}}</span>
+            </button>
+        </div>
+    </div>
+
+    <p>{{selectedClassification?.description}}</p>
+
+    <mountain-table [mountains]="selectedClassification?.mountains || []"></mountain-table>
+
+</div>
