@@ -2,8 +2,8 @@
 
   <path d="M 3 37 
            L 10 12
-           L 20 30
-           L 28 3
+           L 18 30
+           L 26 3
            L 37 37"
            fill="none"
            [attr.stroke]="color"
