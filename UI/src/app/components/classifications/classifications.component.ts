@@ -26,6 +26,8 @@ export class ClassificationsComponent implements OnInit {
   selectedClassificationId?: string;
   selectedClassification?: Classification;
   isLoading = true;
+  isMapVisible = true;
+  isListVisible = false;
 
   ngOnInit(): void {
     this.initialDataService.getClassifications()
@@ -38,6 +40,16 @@ export class ClassificationsComponent implements OnInit {
           this.loadClassification();
         });
       })
+  }
+
+  showMap() {
+    this.isMapVisible = true;
+    this.isListVisible = false;
+  }
+
+  showList() {
+    this.isMapVisible = false;
+    this.isListVisible = true;
   }
 
   private loadClassification() {

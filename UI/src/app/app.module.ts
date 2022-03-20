@@ -16,6 +16,7 @@ import { MountainTableComponent } from './components/mountain-table/mountain-tab
 import { MountainComponent } from './components/mountain/mountain.component';
 import { SentencePipe } from './pipes/sentence.pipe';
 import { LogoComponent } from './components/logo/logo.component';
+import { MapComponent } from './components/map/map.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { LogoComponent } from './components/logo/logo.component';
     MountainTableComponent,
     MountainComponent,
     SentencePipe,
-    LogoComponent
+    LogoComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,9 @@ import { LogoComponent } from './components/logo/logo.component';
     FormsModule,
     NgbModule
   ],
-  providers: [],
+  providers: [
+    MetersToFeetPipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

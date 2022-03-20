@@ -22,27 +22,17 @@
 
     <p>{{selectedClassification?.description}}</p>
 
-    <div class="text-end">
+    <div class="text-end mb-3">
         <div class="btn-group" role="group" aria-label="View as list or map">
-            <input type="radio" class="btn-check" name="maporlist" id="btnmap" autocomplete="off" (change)="mapOrList.select('viewasmap')" checked>
+            <input type="radio" class="btn-check" name="maporlist" id="btnmap" autocomplete="off" (change)="showMap()" checked>
             <label class="btn btn-outline-primary" for="btnmap">Map</label>
     
-            <input type="radio" class="btn-check" name="maporlist" id="btnlist" autocomplete="off" (change)="mapOrList.select('viewaslist')">
+            <input type="radio" class="btn-check" name="maporlist" id="btnlist" autocomplete="off" (change)="showList()">
             <label class="btn btn-outline-primary" for="btnlist">List</label>
         </div>        
     </div>
 
-    <ngb-carousel #mapOrList activeId="viewasmap" [interval]="0" [keyboard]="false" [showNavigationArrows]="false" [showNavigationIndicators]="false">
-        <ng-template ngbSlide id="viewasmap">
-            <div>
-                <div>Map goes here</div>
-            </div>
-        </ng-template>
-        <ng-template ngbSlide id="viewaslist">
-            <div #table>
-                <mountain-table [mountains]="selectedClassification?.mountains || []"></mountain-table>
-            </div>
-        </ng-template>
-    </ngb-carousel>
+    <map [hidden]="!isMapVisible" [mountains]="selectedClassification?.mountains || []"></map>
+    <mountain-table [hidden]="!isListVisible" [mountains]="selectedClassification?.mountains || []"></mountain-table>
 
 </div>

@@ -7,8 +7,8 @@ export interface MountainSummary {
     id: string;
     name: string;
     height: number;
-    Longitude: number;
-    Latitude: number;
+    longitude: number;
+    latitude: number;
 }
 
 export interface Mountain {

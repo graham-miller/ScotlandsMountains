@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+
+.mountain-marker {
+    width: 10px;
+    height: 10px;
+    border: 1px solid white;
+    background-color: #673ab7;
+    border-radius: 10px;
+    margin: 0;
+    padding: 0;
+    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+}
