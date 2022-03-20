@@ -12,7 +12,8 @@
             </span>
         </button>
         <div ngbDropdownMenu aria-labelledby="classificationSelector">
-            <button ngbDropdownItem *ngFor="let classification of classifications"  routerLink="../{{classification.id}}">
+            <button ngbDropdownItem *ngFor="let classification of classifications"
+                routerLink="../{{classification.id}}">
                 {{classification.name}}
                 <span class="badge rounded-pill bg-light text-dark">{{classification.mountainsCount | number}}</span>
             </button>
@@ -21,6 +22,27 @@
 
     <p>{{selectedClassification?.description}}</p>
 
-    <mountain-table [mountains]="selectedClassification?.mountains || []"></mountain-table>
+    <div class="text-end">
+        <div class="btn-group" role="group" aria-label="View as list or map">
+            <input type="radio" class="btn-check" name="maporlist" id="btnmap" autocomplete="off" (change)="mapOrList.select('viewasmap')" checked>
+            <label class="btn btn-outline-primary" for="btnmap">Map</label>
+    
+            <input type="radio" class="btn-check" name="maporlist" id="btnlist" autocomplete="off" (change)="mapOrList.select('viewaslist')">
+            <label class="btn btn-outline-primary" for="btnlist">List</label>
+        </div>        
+    </div>
+
+    <ngb-carousel #mapOrList activeId="viewasmap" [interval]="0" [keyboard]="false" [showNavigationArrows]="false" [showNavigationIndicators]="false">
+        <ng-template ngbSlide id="viewasmap">
+            <div>
+                <div>Map goes here</div>
+            </div>
+        </ng-template>
+        <ng-template ngbSlide id="viewaslist">
+            <div #table>
+                <mountain-table [mountains]="selectedClassification?.mountains || []"></mountain-table>
+            </div>
+        </ng-template>
+    </ngb-carousel>
 
 </div>

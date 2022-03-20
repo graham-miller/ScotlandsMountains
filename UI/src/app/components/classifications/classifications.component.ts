@@ -1,4 +1,4 @@
-import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
 import { Classification } from 'src/app/models/classification';
@@ -19,14 +19,15 @@ export class ClassificationsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) { }
-  
+
+  @ViewChild('table') table?: ElementRef;
+
   classifications: ClassificationSummary[] = []
   selectedClassificationId?: string;
   selectedClassification?: Classification;
   isLoading = true;
 
   ngOnInit(): void {
-
     this.initialDataService.getClassifications()
       .pipe(first())
       .subscribe(data => {
