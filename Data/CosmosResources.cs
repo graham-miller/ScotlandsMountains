@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-
-namespace ScotlandsMountains.Data;
+﻿namespace ScotlandsMountains.Data;
 
 public interface ICosmosResources
 {
@@ -58,6 +56,7 @@ public class CosmosResources : CosmosFacade, ICosmosResources
         var properties = new ContainerProperties(Config.MountainGroupsContainerId, PartitionKey);
         properties.IndexingPolicy.ExcludedPaths.Add(new ExcludedPath { Path = "/*" });
         properties.IndexingPolicy.IncludedPaths.Add(new IncludedPath { Path = "/name/?" });
+        properties.IndexingPolicy.IncludedPaths.Add(new IncludedPath { Path = "/displayOrder/?" });
 
         await database.CreateContainerIfNotExistsAsync(properties);
     }
