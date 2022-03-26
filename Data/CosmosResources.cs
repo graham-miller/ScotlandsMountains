@@ -1,4 +1,6 @@
-﻿namespace ScotlandsMountains.Data;
+﻿using System.Collections.ObjectModel;
+
+namespace ScotlandsMountains.Data;
 
 public interface ICosmosResources
 {
@@ -16,7 +18,9 @@ public class CosmosResources : CosmosFacade, ICosmosResources
     public async Task DropAndRecreateDatabase()
     {
         await DropDatabase();
-        await CreateDatabase();
+        var database = await CreateDatabase();
+        await CreateMountainsContainer(database);
+        await CreateMountainGroupsContainer(database);
     }
 
     private async Task DropDatabase()
@@ -28,12 +32,33 @@ public class CosmosResources : CosmosFacade, ICosmosResources
         }
     }
 
-    private async Task CreateDatabase()
+    private async Task<Database> CreateDatabase()
     {
         var response = await GetClient().CreateDatabaseIfNotExistsAsync(Config.DatabaseId, Config.DatabaseThroughput);
-        var database = response.Database;
+        return response.Database;
+    }
 
-        await database.CreateContainerIfNotExistsAsync(Config.MountainsContainerId, PartitionKey);
-        await database.CreateContainerIfNotExistsAsync(Config.MountainGroupsContainerId, PartitionKey);
+    private async Task CreateMountainsContainer(Database database)
+    {
+        var properties = new ContainerProperties(Config.MountainsContainerId, PartitionKey);
+        properties.IndexingPolicy.ExcludedPaths.Add(new ExcludedPath { Path = "/*" });
+        properties.IndexingPolicy.IncludedPaths.Add(new IncludedPath { Path = "/name/?" });
+        properties.IndexingPolicy.IncludedPaths.Add(new IncludedPath { Path = "/aliases/*" });
+        properties.IndexingPolicy.IncludedPaths.Add(new IncludedPath { Path = "/parent/id/?" });
+        properties.IndexingPolicy.IncludedPaths.Add(new IncludedPath { Path = "/height/metres/?" });
+
+        properties.GeospatialConfig.GeospatialType = GeospatialType.Geography;
+        properties.IndexingPolicy.SpatialIndexes.Add(new SpatialPath { Path = "/location/*", SpatialTypes = { SpatialType.Point } });
+
+        await database.CreateContainerIfNotExistsAsync(properties);
+    }
+
+    private async Task CreateMountainGroupsContainer(Database database)
+    {
+        var properties = new ContainerProperties(Config.MountainGroupsContainerId, PartitionKey);
+        properties.IndexingPolicy.ExcludedPaths.Add(new ExcludedPath { Path = "/*" });
+        properties.IndexingPolicy.IncludedPaths.Add(new IncludedPath { Path = "/name/?" });
+
+        await database.CreateContainerIfNotExistsAsync(properties);
     }
 }

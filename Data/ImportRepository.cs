@@ -2,7 +2,7 @@
 
 public class ImportRepository
 {
-    private const int BatchSize = 25;
+    private const int BatchSize = 100;
 
     private readonly ILogger _logger;
     private readonly ICosmosResources _resources;
