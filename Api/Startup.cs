@@ -1,4 +1,6 @@
-﻿[assembly: FunctionsStartup(typeof(ScotlandsMountains.Api.Startup))]
+﻿using Microsoft.Extensions.Options;
+
+[assembly: FunctionsStartup(typeof(ScotlandsMountains.Api.Startup))]
 
 namespace ScotlandsMountains.Api;
 
@@ -14,5 +16,6 @@ public class Startup : FunctionsStartup
 
         builder.Services.AddSingleton<ICosmosContainers, CosmosContainers>();
         builder.Services.AddTransient<IMountainsRepository, MountainsRepository>();
+        builder.Services.AddTransient<CosmosConfig>(services => services.GetService<IOptions<CosmosConfig>>()?.Value);
     }
 }

@@ -8,7 +8,7 @@ public interface ICosmosContainers
 
 public class CosmosContainers : CosmosFacade, ICosmosContainers
 {
-    public CosmosContainers(IOptions<CosmosConfig> config)
+    public CosmosContainers(CosmosConfig config)
         : base(config)
     { }
 

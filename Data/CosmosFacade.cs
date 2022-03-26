@@ -5,9 +5,9 @@ public abstract class CosmosFacade
     protected readonly CosmosConfig Config;
     private CosmosClient? _client;
 
-    protected CosmosFacade(IOptions<CosmosConfig> config)
+    protected CosmosFacade(CosmosConfig config)
     {
-        Config = config.Value;
+        Config = config;
     }
 
     protected CosmosClient GetClient()

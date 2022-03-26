@@ -9,7 +9,7 @@ public class CosmosResources : CosmosFacade, ICosmosResources
 {
     private static readonly string PartitionKey = $"/{nameof(Entity.PartitionKey).Camelize()}";
 
-    public CosmosResources(IOptions<CosmosConfig> config)
+    public CosmosResources(CosmosConfig config)
         : base(config)
     { }
 

@@ -1,7 +1,15 @@
 ﻿// See https://aka.ms/new-console-template for more information
+
+using Microsoft.Extensions.Configuration;
 using ScotlandsMountains.Import;
 
-var config = Options.Create(new CosmosConfig());
+var config = new ConfigurationBuilder()
+        .AddJsonFile("local.settings.json")
+        .Build()
+        .GetSection("Values")
+        .GetSection("CosmosConfig")
+        .Get<CosmosConfig>();
+
 var resources = new CosmosResources(config);
 var containers = new CosmosContainers(config);
 
