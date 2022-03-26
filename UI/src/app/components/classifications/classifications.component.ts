@@ -37,6 +37,7 @@ export class ClassificationsComponent implements OnInit {
         this.route.params.subscribe(params => {
           this.selectedClassificationId = params['id'];
           this.isLoading = true;
+          this.showMap();
           this.loadClassification();
         });
       })

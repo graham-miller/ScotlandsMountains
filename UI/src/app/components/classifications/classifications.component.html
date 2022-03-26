@@ -24,10 +24,10 @@
 
     <div class="text-end mb-3">
         <div class="btn-group" role="group" aria-label="View as list or map">
-            <input type="radio" class="btn-check" name="maporlist" id="btnmap" autocomplete="off" (change)="showMap()" checked>
+            <input type="radio" class="btn-check" name="maporlist" id="btnmap" autocomplete="off" (change)="showMap()" [checked]="isMapVisible">
             <label class="btn btn-outline-primary" for="btnmap">Map</label>
     
-            <input type="radio" class="btn-check" name="maporlist" id="btnlist" autocomplete="off" (change)="showList()">
+            <input type="radio" class="btn-check" name="maporlist" id="btnlist" autocomplete="off" (change)="showList()" [checked]="isListVisible">
             <label class="btn btn-outline-primary" for="btnlist">List</label>
         </div>        
     </div>
