@@ -1,0 +1,20 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "CosmosConfig:Uri": "https://localhost:8081",
+    "CosmosConfig:Key": "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==",
+    "CosmosConfig:DatabaseThroughput": 1000,
+    "CosmosConfig:DatabaseId": "scotlands-mountains",
+    "CosmosConfig:MountainsContainerId": "mountains",
+    "CosmosConfig:MountainGroupsContainerId": "mountain-groups",
+    "CosmosConfig:BatchSize": 25,
+    "CosmosConfig:MaxRetries": 20,
+    "CosmosConfig:MaxRetryWaitSeconds": 300
+  },
+  "Host": {
+    "LocalHttpPort": 7071,
+    "CORS": "*"
+  }
+}

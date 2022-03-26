@@ -2,6 +2,9 @@
 using ScotlandsMountains.Import;
 
 var config = Options.Create(new CosmosConfig());
+var resources = new CosmosResources(config);
+var containers = new CosmosContainers(config);
+
 var logger = LoggerFactory
     .Create(builder =>
     {
@@ -20,5 +23,5 @@ var logger = LoggerFactory
 var reader = new HillCsvZipReader(logger);
 reader.Read();
 
-var writer = new MountainDataWriter(config, logger);
+var writer = new MountainDataWriter(resources, containers, logger);
 await writer.Write(reader);

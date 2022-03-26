@@ -1,21 +1,25 @@
 ﻿namespace ScotlandsMountains.Data;
 
-public class MountainGroupsRepository
+public interface IMountainsRepository
 {
-    private readonly CosmosConfig _config;
-    private readonly CosmosClient _client;
+    IAsyncEnumerable<dynamic> GetClassifications();
+    Task<dynamic?> GetClassification(Guid id);
+    Task<dynamic?> GetMountain(Guid id);
+    Task<dynamic> Search(string term, int pageSize, string? base64EncodedContinuationToken);
+}
 
-    public MountainGroupsRepository(IOptions<CosmosConfig> config)
+public class MountainsRepository : IMountainsRepository
+{
+    private readonly ICosmosContainers _containers;
+
+    public MountainsRepository(ICosmosContainers containers)
     {
-        _config = config.Value;
-        _client = _config.GetClient();
+        _containers = containers;
     }
 
     public async IAsyncEnumerable<dynamic> GetClassifications()
     {
-        var iterator = _client
-            .GetDatabase(_config.DatabaseName)
-            .GetContainer(_config.MountainGroupsContainerName)
+        var iterator = _containers.GetMountainGroupsContainer()
             .GetItemLinqQueryable<Classification>()
             .Where(c => c.PartitionKey == nameof(Classification).Camelize())
             .OrderBy(c => c.DisplayOrder)
@@ -36,9 +40,7 @@ public class MountainGroupsRepository
 
     public async Task<dynamic?> GetClassification(Guid id)
     {
-        var iterator = _client
-            .GetDatabase(_config.DatabaseName)
-            .GetContainer(_config.MountainGroupsContainerName)
+        var iterator = _containers.GetMountainGroupsContainer()
             .GetItemLinqQueryable<Classification>()
             .Where(c => c.PartitionKey == nameof(Classification).Camelize() && c.Id == id)
             .Select(c => new
@@ -70,9 +72,7 @@ public class MountainGroupsRepository
 
     public async Task<dynamic?> GetMountain(Guid id)
     {
-        var iterator = _client
-            .GetDatabase(_config.DatabaseName)
-            .GetContainer(_config.MountainsContainerName)
+        var iterator = _containers.GetMountainsContainer()
             .GetItemLinqQueryable<Mountain>()
             .Where(m => m.PartitionKey == nameof(Mountain).Camelize() && m.Id == id)
             .Select(m => new
@@ -114,9 +114,7 @@ public class MountainGroupsRepository
             ? null
             : Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(base64EncodedContinuationToken));
 
-        var iterator = _client
-            .GetDatabase(_config.DatabaseName)
-            .GetContainer(_config.MountainsContainerName)
+        var iterator = _containers.GetMountainsContainer()
             .GetItemLinqQueryable<Mountain>(false, continuationToken, requestOptions)
             .Where(m =>
                 m.PartitionKey == nameof(Mountain).Camelize() &&

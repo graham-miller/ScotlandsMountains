@@ -2,46 +2,39 @@
 
 public class ImportRepository
 {
-    private readonly ILogger _logger;
-    private readonly CosmosConfig _config;
-    private readonly CosmosClient _client;
+    private const int BatchSize = 25;
 
-    public ImportRepository(IOptions<CosmosConfig> config, ILogger logger)
+    private readonly ILogger _logger;
+    private readonly ICosmosResources _resources;
+    private readonly ICosmosContainers _containers;
+
+    public ImportRepository(ICosmosResources resources, ICosmosContainers containers,  ILogger logger)
     {
         _logger = logger;
-        _config = config.Value;
-        _client = _config.GetClient();
+        _resources = resources;
+        _containers = containers;
     }
 
-    public async Task<Database> CreateDatabase()
+    public async Task CreateDatabase()
     {
-        var response = await _client.CreateDatabaseIfNotExistsAsync(_config.DatabaseName, _config.DatabaseThroughput);
-        if (response.StatusCode == HttpStatusCode.OK)
-        {
-            await response.Database.DeleteAsync();
-            return (await _client.CreateDatabaseIfNotExistsAsync(_config.DatabaseName, _config.DatabaseThroughput)).Database;
-        }
-
-        return response.Database;
+        await _resources.DropAndRecreateDatabase();
     }
 
     public async Task Save<T>(IReadOnlyCollection<T> items) where T : Entity
     {
-        var containerName = typeof(T) == typeof(Mountain)
-            ? _config.MountainsContainerName
-            : _config.MountainGroupsContainerName;
-        var database = _client.GetDatabase(_config.DatabaseName);
-        var container = (await database!.CreateContainerIfNotExistsAsync(containerName, $"/{nameof(Entity.PartitionKey).Camelize()}")).Container;
+        var container = typeof(T) == typeof(Mountain)
+            ? _containers.GetMountainsContainer()
+            : _containers.GetMountainGroupsContainer();
 
         var batchCounter = 0;
-        var batchCount = items.Count / _config.BatchSize + (items.Count % _config.BatchSize == 0 ? 0 : 1);
+        var batchCount = items.Count / BatchSize + (items.Count % BatchSize == 0 ? 0 : 1);
         var count = 0;
         var cost = 0;
         var errors = 0;
 
         _logger.LogInformation($"Saving {typeof(T).Name.Pluralize()}, batches: {batchCount:#,##0}");
 
-        foreach (var batch in items.Batch(_config.BatchSize))
+        foreach (var batch in items.Batch(BatchSize))
         {
             batchCounter++;
             _logger.LogDebug($"Saving {typeof(T).Name.Pluralize()} batch {batchCounter:#,##0} of {batchCount:#,##0}");

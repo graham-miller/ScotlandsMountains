@@ -2,12 +2,11 @@ namespace ScotlandsMountains.Api;
 
 public class Endpoints
 {
-    private readonly MountainGroupsRepository _repository;
+    private readonly IMountainsRepository _repository;
 
-    public Endpoints()
+    public Endpoints(IMountainsRepository repository)
     {
-        var config = Options.Create(new CosmosConfig());
-        _repository = new MountainGroupsRepository(config);
+        _repository = repository;
     }
 
     // http://localhost:7071/api/classifications
