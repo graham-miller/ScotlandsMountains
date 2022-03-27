@@ -43,7 +43,8 @@ export class MapComponent implements AfterViewInit, OnChanges, OnDestroy {
     this.map = L.map('map', {
       center: [56.659406, -4.011214],
       zoom: 7,
-      gestureHandling: true
+      gestureHandling: true,
+      attributionControl: false
     } as L.MapOptions);
 
     this.addBaseLayers();
@@ -51,16 +52,26 @@ export class MapComponent implements AfterViewInit, OnChanges, OnDestroy {
   }
 
   private addBaseLayers() {
-    const outdoors = this.createThunderforestTileLayer('outdoors');
-    const landscape = this.createThunderforestTileLayer('landscape');
-    const transport = this.createThunderforestTileLayer('transport');
-    const cycle = this.createThunderforestTileLayer('cycle');
+    // const outdoors = this.createThunderforestTileLayer('outdoors');
+    // const landscape = this.createThunderforestTileLayer('landscape');
+    // const transport = this.createThunderforestTileLayer('transport');
+    // const cycle = this.createThunderforestTileLayer('cycle');
+
+    // const baseLayers = {
+    //   'Outdoors': outdoors,
+    //   'Landscape': landscape,
+    //   'Transport': transport,
+    //   'Cycle': cycle
+    // };
+
+    const outdoors = this.createMapboxTileLayer('mapbox/outdoors-v11');
+    const street = this.createMapboxTileLayer('mapbox/streets-v11');
+    const satellite = this.createMapboxTileLayer('mapbox/satellite-streets-v11');
 
     const baseLayers = {
       'Outdoors': outdoors,
-      'Landscape': landscape,
-      'Transport': transport,
-      'Cycle': cycle
+      'Street': street,
+      'Satellite': satellite
     };
 
     const markers = L.layerGroup([this.markers]);
@@ -79,9 +90,34 @@ export class MapComponent implements AfterViewInit, OnChanges, OnDestroy {
       { maxZoom: 18 });
   }
 
+  private createMapboxTileLayer(moniker: string): L.TileLayer {
+    const accessToken = 'pk.eyJ1IjoiZ3JhaGFtbSIsImEiOiJjbDE5cjd4NGcxYzkzM2JzMTNvdzZ0M2IyIn0.yyOxzlYe6HoJ_HL8OQho2g';
+    const attribution =
+      '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> ' +
+      '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> ' +
+      '<a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a>';
+
+    return L.tileLayer(
+      'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+      attribution: attribution,
+      tileSize: 512,
+      maxZoom: 18,
+      zoomOffset: -1,
+      id: moniker,
+      accessToken: accessToken
+    });
+  }
+
+
+
+
   private addMapControls() {
     if (this.map) { 
-      this.map.attributionControl.setPrefix('');
+
+      L.control.attribution({
+        prefix: '',
+        position: 'bottomleft'
+      }).addTo(this.map);
 
       L.control.scale({
         maxWidth: 200,
