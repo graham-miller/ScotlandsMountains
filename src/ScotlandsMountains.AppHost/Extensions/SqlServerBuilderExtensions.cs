@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
-
-namespace ScotlandsMountains.AppHost.Extensions;
+﻿namespace ScotlandsMountains.AppHost.Extensions;
 
 internal static class SqlServerBuilderExtensions
 {

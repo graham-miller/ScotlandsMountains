@@ -15,20 +15,7 @@ var migration = builder
 
 var api = builder
     .AddProject<Projects.ScotlandsMountains_Api>("api")
-    .WithUrls(context =>
-    {
-        foreach (var url in context.Urls)
-        {
-            if (string.IsNullOrEmpty(url.DisplayText))
-            {
-                url.DisplayText = $"Swagger UI ({url.Endpoint?.Scheme?.ToLower()})";
-                url.Url += "/swagger";
-                
-                if (url?.Endpoint?.Scheme == "http")
-                    url.DisplayLocation = UrlDisplayLocation.DetailsOnly;
-            }
-        }
-    })
+    .WithSwaggerUrls()
     .WithReference(sql)
     .WaitFor(migration);
 
