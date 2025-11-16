@@ -1,7 +1,6 @@
 ﻿namespace ScotlandsMountains.Domain.Entities;
 
-internal class Mountain : Entity<int>
+public class Mountain : Entity<int>
 {
-
-
+    public string Name { get; set; }
 }

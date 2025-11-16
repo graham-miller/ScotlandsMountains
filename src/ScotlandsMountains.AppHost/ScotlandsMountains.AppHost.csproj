@@ -12,4 +12,8 @@
     <ProjectReference Include="..\ScotlandsMountains.Api\ScotlandsMountains.Api.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.SqlServer" Version="13.0.0" />
+  </ItemGroup>
+
 </Project>
