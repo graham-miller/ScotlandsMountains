@@ -1,0 +1,17 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".dockerignore" />
+    <File Path=".gitignore" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/ScotlandsMountains.Api/ScotlandsMountains.Api.csproj" />
+    <Project Path="src/ScotlandsMountains.AppHost/ScotlandsMountains.AppHost.csproj" />
+    <Project Path="src/ScotlandsMountains.Application/ScotlandsMountains.Application.csproj" />
+    <Project Path="src/ScotlandsMountains.Domain/ScotlandsMountains.Domain.csproj" />
+    <Project Path="src/ScotlandsMountains.Infrastructure/ScotlandsMountains.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ScotlandsMountains.Domain.Tests/ScotlandsMountains.Domain.Tests.csproj" Id="30ed4f77-8b1f-4d04-aeaa-ba0584dd9e29" />
+  </Folder>
+</Solution>
