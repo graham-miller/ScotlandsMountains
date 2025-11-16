@@ -2,7 +2,7 @@ using ScotlandsMountains.Infrastructure.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.AddSqlServerDbContext<ScotlandsMountainsDbContext>("mssql");
+builder.AddSqlServerDbContext<ScotlandsMountainsDbContext>("ScotlandsMountains");
 
 // Add Swagger services
 builder.Services.AddEndpointsApiExplorer();

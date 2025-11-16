@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ScotlandsMountains.MigrationService": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

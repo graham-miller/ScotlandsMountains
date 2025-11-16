@@ -5,6 +5,7 @@
     <File Path="README.md" />
   </Folder>
   <Folder Name="/src/">
+    <Project Path="ScotlandsMountains.MigrationService/ScotlandsMountains.MigrationService.csproj" Id="b9f1db6d-6c59-4d8d-9eec-1c777928564f" />
     <Project Path="src/ScotlandsMountains.Api/ScotlandsMountains.Api.csproj" />
     <Project Path="src/ScotlandsMountains.AppHost/ScotlandsMountains.AppHost.csproj" />
     <Project Path="src/ScotlandsMountains.Application/ScotlandsMountains.Application.csproj" />

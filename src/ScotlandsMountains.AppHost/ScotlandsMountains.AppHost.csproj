@@ -1,4 +1,4 @@
-<Project Sdk="Aspire.AppHost.Sdk/13.0.0">
+﻿<Project Sdk="Aspire.AppHost.Sdk/13.0.0">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\ScotlandsMountains.MigrationService\ScotlandsMountains.MigrationService.csproj" />
     <ProjectReference Include="..\ScotlandsMountains.Api\ScotlandsMountains.Api.csproj" />
   </ItemGroup>
 

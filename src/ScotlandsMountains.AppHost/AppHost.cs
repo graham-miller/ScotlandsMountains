@@ -2,13 +2,20 @@
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-var sqlServer = builder.AddSqlServer("mssql")
-    .WithScotlandsMountainsDataBindMount();
+var sql = builder
+    .AddSqlServer("mssql")
+    .WithHostPort(14330)
+    .WithScotlandsMountainsDataBindMount()
+    .AddDatabase("ScotlandsMountains");
 
-var db = sqlServer.AddDatabase("ScotlandsMountains");
+var migration = builder
+    .AddProject<Projects.ScotlandsMountains_MigrationService>("migration")
+    .WithReference(sql)
+    .WaitFor(sql);
 
 var api = builder
     .AddProject<Projects.ScotlandsMountains_Api>("api")
-    .WithReference(db); ;
+    .WithReference(sql)
+    .WaitFor(migration);
 
 builder.Build().Run();
