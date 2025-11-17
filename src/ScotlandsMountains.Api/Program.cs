@@ -1,3 +1,5 @@
+using ScotlandsMountains.Application;
+using ScotlandsMountains.Infrastructure;
 using ScotlandsMountains.Infrastructure.Database;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Add services to the container.
+builder.AddApplicationServices();
+builder.AddInfrastructureServices();
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
