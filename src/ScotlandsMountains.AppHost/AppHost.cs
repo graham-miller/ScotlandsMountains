@@ -28,7 +28,9 @@ var subscription = uploadTopic.AddServiceBusSubscription("file-upload-sub");
 var functions = builder
     .AddAzureFunctionsProject<Projects.ScotlandsMountains_FunctionApp>("functions")
     .WithReference(messaging)
-    .WithReference(storage);
+    .WithReference(storage)
+    .WaitFor(messaging)
+    .WaitFor(storage);
 
 var api = builder
     .AddProject<Projects.ScotlandsMountains_Api>("api")

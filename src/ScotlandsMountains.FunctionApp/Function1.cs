@@ -4,6 +4,14 @@ using Microsoft.Extensions.Logging;
 
 namespace ScotlandsMountains.FunctionApp;
 
+public class BlobMessage
+{
+    public required string FileType { get; set; }
+    public required string ContainerName { get; set; }
+    public required string FileName { get; set; }
+    public DateTime UploadedAt { get; set; }
+}
+
 public class Function1
 {
     private readonly ILogger<Function1> _logger;
@@ -16,14 +24,12 @@ public class Function1
     [Function(nameof(Function1))]
     public async Task Run(
         [ServiceBusTrigger("file-upload-topic", "file-upload-sub", Connection = "messaging")]
+        BlobMessage payload,
         ServiceBusReceivedMessage message,
-        ServiceBusMessageActions messageActions)
+        ServiceBusMessageActions messageActions,
+        [BlobInput("{ContainerName}/{FileName}", Connection = "blobs")]
+        Stream stream)
     {
-        _logger.LogInformation("Message ID: {id}", message.MessageId);
-        _logger.LogInformation("Message Body: {body}", message.Body);
-        _logger.LogInformation("Message Content-Type: {contentType}", message.ContentType);
-
-            // Complete the message
         await messageActions.CompleteMessageAsync(message);
     }
 }

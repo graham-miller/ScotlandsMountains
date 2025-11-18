@@ -12,11 +12,17 @@ public class AzureServiceBusNotificationService : IFileUploadNotificationService
         _client = client;
     }
 
-    public async Task PublishFileUploadedNotificationAsync(string fileType, Uri fileUri, CancellationToken cancellationToken = default)
+    public async Task PublishFileUploadedNotificationAsync(string fileType, string containerName, string fileName, CancellationToken cancellationToken)
     {
         ServiceBusSender sender = _client.CreateSender(TopicName);
 
-        var notification = new { FileType = fileType, Url = fileUri.ToString(), UploadedAt = DateTimeOffset.UtcNow };
+        var notification = new {
+            FileType = fileType, 
+            ContainerName = containerName, 
+            FileName = fileName, 
+            UploadedAt = DateTimeOffset.UtcNow
+        };
+
         var jsonPayload = System.Text.Json.JsonSerializer.Serialize(notification);
 
         var message = new ServiceBusMessage(jsonPayload);

@@ -25,7 +25,7 @@ internal class UploadDobihFileCommandHandler : IRequestHandler<UploadDobihFileCo
 
         var uri = await _fileStorageService.UploadFileAsync(containerName, fileName, request.Content, cancellationToken);
 
-        await _fileUploadNotificationService.PublishFileUploadedNotificationAsync("Dobih", uri, cancellationToken);
+        await _fileUploadNotificationService.PublishFileUploadedNotificationAsync("Dobih", containerName, fileName, cancellationToken);
 
         return Result.Success();
     }
