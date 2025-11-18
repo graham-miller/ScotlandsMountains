@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 var builder = FunctionsApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
+builder.AddAzureBlobServiceClient("blobs");
 
 builder.ConfigureFunctionsWebApplication();
 
