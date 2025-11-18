@@ -19,7 +19,7 @@ public class Mediator(IServiceProvider provider) : IMediator
 {
     internal static void RegisterRequestHandlers(IHostApplicationBuilder builder)
     {
-        builder.Services.AddSingleton<IMediator, Mediator>();
+        builder.Services.AddScoped<IMediator, Mediator>();
 
         var types = typeof(Mediator).Assembly
                 .GetTypes()

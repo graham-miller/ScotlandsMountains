@@ -12,12 +12,14 @@ internal class AzureBlobStorageService : IFileStorageService
         _blobServiceClient = blobServiceClient;
     }
 
-    public async Task UploadFileAsync(string containerName, string fileName, Stream content, CancellationToken cancellationToken)
+    public async Task<Uri> UploadFileAsync(string containerName, string fileName, Stream content, CancellationToken cancellationToken)
     {
         var container = _blobServiceClient.GetBlobContainerClient(containerName);
         await container.CreateIfNotExistsAsync();
         
         var blob = container.GetBlobClient(fileName);
         await blob.UploadAsync(content, cancellationToken);
+
+        return blob.Uri;
     }
 }

@@ -18,11 +18,19 @@ var storage = builder
     .RunAsEmulatorWithDefaultPorts()
     .AddBlobs("blobs");
 
+var serviceBus = builder
+    .AddAzureServiceBus("servicebus")
+    .RunAsEmulator();
+
+var uploadTopic = serviceBus.AddServiceBusTopic("file-upload-topic");
+var subscription = uploadTopic.AddServiceBusSubscription("file-upload-sub");
+
 var api = builder
     .AddProject<Projects.ScotlandsMountains_Api>("api")
     .WithSwaggerUrls()
     .WithReference(sql)
     .WithReference(storage)
-    .WaitFor(migration);
+    .WaitFor(migration)
+    .WithReference(serviceBus);
 
 builder.Build().Run();

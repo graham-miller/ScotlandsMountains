@@ -3,23 +3,29 @@ using ScotlandsMountains.Application.Ports;
 
 namespace ScotlandsMountains.Application.UseCases.Mountains;
 
-public record UploadFileCommand(Stream Content) : IRequest<Result>;
+public record UploadDobihFileCommand(Stream Content) : IRequest<Result>;
 
-internal class UploadFileCommandHandler : IRequestHandler<UploadFileCommand, Result>
+internal class UploadDobihFileCommandHandler : IRequestHandler<UploadDobihFileCommand, Result>
 {
     private readonly IFileStorageService _fileStorageService;
+    private readonly IFileUploadNotificationService _fileUploadNotificationService;
 
-    public UploadFileCommandHandler(IFileStorageService fileStorageService)
+    public UploadDobihFileCommandHandler(
+        IFileStorageService fileStorageService,
+        IFileUploadNotificationService fileUploadNotificationService)
     {
         _fileStorageService = fileStorageService;
+        this._fileUploadNotificationService = fileUploadNotificationService;
     }
 
-    public async Task<Result> HandleAsync(UploadFileCommand request, CancellationToken cancellationToken = default)
+    public async Task<Result> HandleAsync(UploadDobihFileCommand request, CancellationToken cancellationToken = default)
     {
         const string containerName = "dobih-files";
         var fileName = Guid.NewGuid().ToString();
 
-        await _fileStorageService.UploadFileAsync(containerName, fileName, request.Content, cancellationToken);
+        var uri = await _fileStorageService.UploadFileAsync(containerName, fileName, request.Content, cancellationToken);
+
+        await _fileUploadNotificationService.PublishFileUploadedNotificationAsync("Dobih", uri, cancellationToken);
 
         return Result.Success();
     }

@@ -2,5 +2,5 @@
 
 public interface IFileStorageService
 {
-    Task UploadFileAsync(string containerName, string fileName, Stream content, CancellationToken cancellationToken);
+    Task<Uri> UploadFileAsync(string containerName, string fileName, Stream content, CancellationToken cancellationToken);
 }

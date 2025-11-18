@@ -20,7 +20,7 @@ public class DobihFilesController : ControllerBase
     {
         if (file == null || file.Length == 0) return BadRequest();
 
-        var command = new UploadFileCommand(file.OpenReadStream());
+        var command = new UploadDobihFileCommand(file.OpenReadStream());
 
         await _mediator.SendAsync(command);
 

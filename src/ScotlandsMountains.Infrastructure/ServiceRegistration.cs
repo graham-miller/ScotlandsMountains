@@ -9,7 +9,8 @@ public static class ServiceRegistration
 {
     public static IHostApplicationBuilder AddInfrastructureServices(this IHostApplicationBuilder builder)
     {
-        builder.Services.AddTransient<IFileStorageService, AzureBlobStorageService>();
+        builder.Services.AddScoped<IFileStorageService, AzureBlobStorageService>();
+        builder.Services.AddScoped<IFileUploadNotificationService, AzureServiceBusNotificationService>();
 
         return builder;
     }
