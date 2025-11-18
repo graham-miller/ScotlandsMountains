@@ -9,6 +9,7 @@
     <Project Path="src/ScotlandsMountains.AppHost/ScotlandsMountains.AppHost.csproj" />
     <Project Path="src/ScotlandsMountains.Application/ScotlandsMountains.Application.csproj" />
     <Project Path="src/ScotlandsMountains.Domain/ScotlandsMountains.Domain.csproj" />
+    <Project Path="src/ScotlandsMountains.FunctionApp/ScotlandsMountains.FunctionApp.csproj" />
     <Project Path="src/ScotlandsMountains.Infrastructure/ScotlandsMountains.Infrastructure.csproj" />
     <Project Path="src/ScotlandsMountains.MigrationService/ScotlandsMountains.MigrationService.csproj" />
     <Project Path="src/ScotlandsMountains.ServiceDefaults/ScotlandsMountains.ServiceDefaults.csproj" Id="11751dfe-2c7a-4f7e-ad09-43b433909cc9" />

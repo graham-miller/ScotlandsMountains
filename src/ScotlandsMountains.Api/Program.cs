@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 builder.AddSqlServerDbContext<ScotlandsMountainsDbContext>("ScotlandsMountains");
 builder.AddAzureBlobServiceClient("blobs");
-builder.AddAzureServiceBusClient("servicebus");
+builder.AddAzureServiceBusClient("messaging");
 
 // Add Swagger services
 builder.Services.AddEndpointsApiExplorer();

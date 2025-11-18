@@ -1,4 +1,4 @@
-﻿using ScotlandsMountains.AppHost.Extensions;
+using ScotlandsMountains.AppHost.Extensions;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
@@ -18,12 +18,17 @@ var storage = builder
     .RunAsEmulatorWithDefaultPorts()
     .AddBlobs("blobs");
 
-var serviceBus = builder
-    .AddAzureServiceBus("servicebus")
+var messaging = builder
+    .AddAzureServiceBus("messaging")
     .RunAsEmulator();
 
-var uploadTopic = serviceBus.AddServiceBusTopic("file-upload-topic");
+var uploadTopic = messaging.AddServiceBusTopic("file-upload-topic");
 var subscription = uploadTopic.AddServiceBusSubscription("file-upload-sub");
+
+var functions = builder
+    .AddAzureFunctionsProject<Projects.ScotlandsMountains_FunctionApp>("functions")
+    .WithReference(messaging)
+    .WithReference(storage);
 
 var api = builder
     .AddProject<Projects.ScotlandsMountains_Api>("api")
@@ -31,6 +36,7 @@ var api = builder
     .WithReference(sql)
     .WithReference(storage)
     .WaitFor(migration)
-    .WithReference(serviceBus);
+    .WithReference(messaging);
+
 
 builder.Build().Run();

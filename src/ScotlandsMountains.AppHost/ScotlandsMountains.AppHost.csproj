@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.Azure.Functions" Version="(13.0-*,13.1]" />
     <PackageReference Include="Aspire.Hosting.Azure.ServiceBus" Version="13.0.0" />
     <PackageReference Include="Aspire.Hosting.Azure.Storage" Version="13.0.0" />
     <PackageReference Include="Aspire.Hosting.SqlServer" Version="13.0.0" />
@@ -16,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ScotlandsMountains.Api\ScotlandsMountains.Api.csproj" />
+    <ProjectReference Include="..\ScotlandsMountains.FunctionApp\ScotlandsMountains.FunctionApp.csproj" />
     <ProjectReference Include="..\ScotlandsMountains.MigrationService\ScotlandsMountains.MigrationService.csproj" />
   </ItemGroup>
 
