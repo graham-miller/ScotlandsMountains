@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Hosting;
-using ScotlandsMountains.Application.RequestMediator;
+using ScotlandsMountains.Application.Ports;
 
 namespace ScotlandsMountains.Application;
 

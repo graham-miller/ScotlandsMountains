@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\ScotlandsMountains.Infrastructure\ScotlandsMountains.Infrastructure.csproj" />
+    <ProjectReference Include="..\ScotlandsMountains.Infrastructure\ScotlandsMountains.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

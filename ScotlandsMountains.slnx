@@ -5,12 +5,13 @@
     <File Path="README.md" />
   </Folder>
   <Folder Name="/src/">
-    <Project Path="ScotlandsMountains.MigrationService/ScotlandsMountains.MigrationService.csproj" Id="b9f1db6d-6c59-4d8d-9eec-1c777928564f" />
     <Project Path="src/ScotlandsMountains.Api/ScotlandsMountains.Api.csproj" />
     <Project Path="src/ScotlandsMountains.AppHost/ScotlandsMountains.AppHost.csproj" />
     <Project Path="src/ScotlandsMountains.Application/ScotlandsMountains.Application.csproj" />
     <Project Path="src/ScotlandsMountains.Domain/ScotlandsMountains.Domain.csproj" />
     <Project Path="src/ScotlandsMountains.Infrastructure/ScotlandsMountains.Infrastructure.csproj" />
+    <Project Path="src/ScotlandsMountains.MigrationService/ScotlandsMountains.MigrationService.csproj" />
+    <Project Path="src/ScotlandsMountains.ServiceDefaults/ScotlandsMountains.ServiceDefaults.csproj" Id="11751dfe-2c7a-4f7e-ad09-43b433909cc9" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/ScotlandsMountains.Domain.Tests/ScotlandsMountains.Domain.Tests.csproj" Id="30ed4f77-8b1f-4d04-aeaa-ba0584dd9e29" />

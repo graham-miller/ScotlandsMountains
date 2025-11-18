@@ -1,4 +1,4 @@
-﻿namespace ScotlandsMountains.Application.RequestMediator;
+﻿namespace ScotlandsMountains.Application.Dtos;
 
 public class Result
 {

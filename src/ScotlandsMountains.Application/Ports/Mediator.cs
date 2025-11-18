@@ -1,7 +1,14 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace ScotlandsMountains.Application.RequestMediator;
+namespace ScotlandsMountains.Application.Ports;
+
+public interface IRequest<TResponse> { }
+
+public interface IRequestHandler<in TRequest, TResponse> where TRequest : IRequest<TResponse>
+{
+    Task<TResponse> HandleAsync(TRequest request, CancellationToken cancellationToken = default);
+}
 
 public interface IMediator
 {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ScotlandsMountains.Application.Dtos;
-using ScotlandsMountains.Application.RequestMediator;
+using ScotlandsMountains.Application.Ports;
 using ScotlandsMountains.Application.UseCases.Mountains;
 
 namespace ScotlandsMountains.Api.Controllers;

@@ -4,7 +4,9 @@ using ScotlandsMountains.Infrastructure.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddServiceDefaults();
 builder.AddSqlServerDbContext<ScotlandsMountainsDbContext>("ScotlandsMountains");
+builder.AddAzureBlobServiceClient("blobs");
 
 // Add Swagger services
 builder.Services.AddEndpointsApiExplorer();

@@ -13,10 +13,16 @@ var migration = builder
     .WithReference(sql)
     .WaitFor(sql);
 
+var storage = builder
+    .AddAzureStorage("storage")
+    .RunAsEmulator()
+    .AddBlobs("blobs");
+
 var api = builder
     .AddProject<Projects.ScotlandsMountains_Api>("api")
     .WithSwaggerUrls()
     .WithReference(sql)
+    .WithReference(storage)
     .WaitFor(migration);
 
 builder.Build().Run();

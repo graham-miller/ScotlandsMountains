@@ -28,6 +28,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ScotlandsMountains.Application\ScotlandsMountains.Application.csproj" />
     <ProjectReference Include="..\ScotlandsMountains.Infrastructure\ScotlandsMountains.Infrastructure.csproj" />
+    <ProjectReference Include="..\ScotlandsMountains.ServiceDefaults\ScotlandsMountains.ServiceDefaults.csproj" />
   </ItemGroup>
 
 </Project>
