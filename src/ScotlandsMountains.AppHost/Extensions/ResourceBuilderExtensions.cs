@@ -1,4 +1,6 @@
-﻿namespace ScotlandsMountains.AppHost.Extensions;
+﻿using Aspire.Hosting.Azure;
+
+namespace ScotlandsMountains.AppHost.Extensions;
 
 internal static class ResourceBuilderExtensions
 {
@@ -19,4 +21,17 @@ internal static class ResourceBuilderExtensions
              }
          });
     }
+
+    internal static IResourceBuilder<AzureStorageResource> RunAsEmulatorWithDefaultPorts(this IResourceBuilder<AzureStorageResource> builder)
+    {
+        builder.RunAsEmulator(azurite =>
+        {
+            azurite.WithEndpoint("blob", e => e.Port = 10000);
+            azurite.WithEndpoint("queue", e => e.Port = 10001);
+            azurite.WithEndpoint("table", e => e.Port = 10002);
+        });
+
+        return builder;
+    }
+
 }

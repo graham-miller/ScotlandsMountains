@@ -15,7 +15,7 @@ var migration = builder
 
 var storage = builder
     .AddAzureStorage("storage")
-    .RunAsEmulator()
+    .RunAsEmulatorWithDefaultPorts()
     .AddBlobs("blobs");
 
 var api = builder
