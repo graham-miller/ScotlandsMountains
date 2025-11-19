@@ -28,6 +28,7 @@ var subscription = uploadTopic.AddServiceBusSubscription(AspireConstants.FileUpl
 
 var functions = builder
     .AddAzureFunctionsProject<Projects.ScotlandsMountains_FunctionApp>("functions")
+    .WithReference(sql)
     .WithReference(messaging)
     .WithReference(storage)
     .WaitFor(messaging)

@@ -21,7 +21,123 @@ namespace ScotlandsMountains.Infrastructure.Database.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ScotlandsMountains.Domain.Entities.Mountain", b =>
+            modelBuilder.Entity("MountainClassifications", b =>
+                {
+                    b.Property<int>("MountainId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClassificationId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MountainId", "ClassificationId");
+
+                    b.HasIndex("ClassificationId");
+
+                    b.ToTable("MountainClassifications");
+                });
+
+            modelBuilder.Entity("MountainCounties", b =>
+                {
+                    b.Property<int>("MountainId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CountyId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MountainId", "CountyId");
+
+                    b.HasIndex("CountyId");
+
+                    b.ToTable("MountainCounties");
+                });
+
+            modelBuilder.Entity("MountainCountries", b =>
+                {
+                    b.Property<int>("MountainId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MountainId", "CountryId");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("MountainCountries");
+                });
+
+            modelBuilder.Entity("MountainMaps", b =>
+                {
+                    b.Property<int>("MountainId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MapId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MountainId", "MapId");
+
+                    b.HasIndex("MapId");
+
+                    b.ToTable("MountainMaps");
+                });
+
+            modelBuilder.Entity("ScotlandsMountains.Domain.Entities.Classification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DobihCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameSingular")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Classifications");
+                });
+
+            modelBuilder.Entity("ScotlandsMountains.Domain.Entities.Country", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DobihCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Countries");
+                });
+
+            modelBuilder.Entity("ScotlandsMountains.Domain.Entities.County", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -35,7 +151,296 @@ namespace ScotlandsMountains.Infrastructure.Database.Migrations
 
                     b.HasKey("Id");
 
+                    b.ToTable("Counties");
+                });
+
+            modelBuilder.Entity("ScotlandsMountains.Domain.Entities.DobihFile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("DobihName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DobihFiles");
+                });
+
+            modelBuilder.Entity("ScotlandsMountains.Domain.Entities.Map", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Isbn")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IsbnActive")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SeriesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SeriesId");
+
+                    b.ToTable("Maps");
+                });
+
+            modelBuilder.Entity("ScotlandsMountains.Domain.Entities.MapPublisher", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MapPublishers");
+                });
+
+            modelBuilder.Entity("ScotlandsMountains.Domain.Entities.MapSeries", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PublisherId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Scale")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PublisherId");
+
+                    b.ToTable("MapSeries");
+                });
+
+            modelBuilder.Entity("ScotlandsMountains.Domain.Entities.Mountain", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.PrimitiveCollection<string>("Aliases")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ColGridRef")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("ColHeight")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Coordinates")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DobihNumber")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Drop")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Feature")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GridRef")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Height")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Observations")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ParentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RegionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentId");
+
+                    b.HasIndex("RegionId");
+
                     b.ToTable("Mountains");
+                });
+
+            modelBuilder.Entity("ScotlandsMountains.Domain.Entities.Region", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DobihCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Regions");
+                });
+
+            modelBuilder.Entity("MountainClassifications", b =>
+                {
+                    b.HasOne("ScotlandsMountains.Domain.Entities.Classification", null)
+                        .WithMany()
+                        .HasForeignKey("ClassificationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ScotlandsMountains.Domain.Entities.Mountain", null)
+                        .WithMany()
+                        .HasForeignKey("MountainId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MountainCounties", b =>
+                {
+                    b.HasOne("ScotlandsMountains.Domain.Entities.County", null)
+                        .WithMany()
+                        .HasForeignKey("CountyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ScotlandsMountains.Domain.Entities.Mountain", null)
+                        .WithMany()
+                        .HasForeignKey("MountainId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MountainCountries", b =>
+                {
+                    b.HasOne("ScotlandsMountains.Domain.Entities.Country", null)
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ScotlandsMountains.Domain.Entities.Mountain", null)
+                        .WithMany()
+                        .HasForeignKey("MountainId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MountainMaps", b =>
+                {
+                    b.HasOne("ScotlandsMountains.Domain.Entities.Map", null)
+                        .WithMany()
+                        .HasForeignKey("MapId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ScotlandsMountains.Domain.Entities.Mountain", null)
+                        .WithMany()
+                        .HasForeignKey("MountainId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ScotlandsMountains.Domain.Entities.Map", b =>
+                {
+                    b.HasOne("ScotlandsMountains.Domain.Entities.MapSeries", "Series")
+                        .WithMany()
+                        .HasForeignKey("SeriesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Series");
+                });
+
+            modelBuilder.Entity("ScotlandsMountains.Domain.Entities.MapSeries", b =>
+                {
+                    b.HasOne("ScotlandsMountains.Domain.Entities.MapPublisher", "Publisher")
+                        .WithMany()
+                        .HasForeignKey("PublisherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Publisher");
+                });
+
+            modelBuilder.Entity("ScotlandsMountains.Domain.Entities.Mountain", b =>
+                {
+                    b.HasOne("ScotlandsMountains.Domain.Entities.Mountain", "Parent")
+                        .WithMany()
+                        .HasForeignKey("ParentId");
+
+                    b.HasOne("ScotlandsMountains.Domain.Entities.Region", "Region")
+                        .WithMany("Mountains")
+                        .HasForeignKey("RegionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Parent");
+
+                    b.Navigation("Region");
+                });
+
+            modelBuilder.Entity("ScotlandsMountains.Domain.Entities.Region", b =>
+                {
+                    b.Navigation("Mountains");
                 });
 #pragma warning restore 612, 618
         }

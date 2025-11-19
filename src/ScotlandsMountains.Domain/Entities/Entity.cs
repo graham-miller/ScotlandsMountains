@@ -1,28 +1,23 @@
 ﻿namespace ScotlandsMountains.Domain.Entities;
 
-public abstract class Entity<TId> : IEquatable<Entity<TId>>
-    where TId : notnull
+public abstract class Entity : IEquatable<Entity>
 {
-    public TId Id { get; protected set; }
-
-    protected Entity()
-    {
-        Id = default!;
-    }
+    public int Id { get; protected set; }
 
     public override bool Equals(object? obj)
     {
-        return Equals(obj as Entity<TId>);
+        return Equals(obj as Entity);
     }
 
-    public virtual bool Equals(Entity<TId>? other)
+    public virtual bool Equals(Entity? other)
     {
         if (other is null) return false;
+
         if (ReferenceEquals(this, other)) return true;
 
-        if (IsTransient(Id))
+        if (IsTransient() || other.IsTransient())
         {
-            return ReferenceEquals(this, other);
+            return false;
         }
 
         if (other.GetType() != GetType()) return false;
@@ -30,23 +25,23 @@ public abstract class Entity<TId> : IEquatable<Entity<TId>>
         return Id.Equals(other.Id);
     }
 
-    private bool IsTransient(TId id)
-    {
-        return EqualityComparer<TId>.Default.Equals(id, default!);
-    }
-
     public override int GetHashCode()
     {
-        return IsTransient(Id) ? base.GetHashCode() : HashCode.Combine(Id, GetType());
+        return IsTransient() ? base.GetHashCode() : HashCode.Combine(Id, GetType());
     }
     
-    public static bool operator ==(Entity<TId> left, Entity<TId> right)
+    public static bool operator ==(Entity left, Entity right)
     {
         return Equals(left, right);
     }
 
-    public static bool operator !=(Entity<TId> left, Entity<TId> right)
+    public static bool operator !=(Entity left, Entity right)
     {
         return !Equals(left, right);
+    }
+
+    private bool IsTransient()
+    {
+        return Id <= 0;
     }
 }

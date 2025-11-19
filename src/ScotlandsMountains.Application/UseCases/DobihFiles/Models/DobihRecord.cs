@@ -73,9 +73,9 @@ internal class DobihRecord
 
     [Name("Ycoord")] public int YCoord { get; set; }
 
-    [Name("Latitude")] public double Latitude { get; set; }
+    [Name("Latitude")] public decimal Latitude { get; set; }
 
-    [Name("Longitude")] public double Longitude { get; set; }
+    [Name("Longitude")] public decimal Longitude { get; set; }
 
     [Name("GridrefXY")] public string GridRefXy { get; set; } = null!;
 

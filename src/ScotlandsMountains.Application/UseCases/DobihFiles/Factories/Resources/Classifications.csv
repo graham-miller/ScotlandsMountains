@@ -1,0 +1,66 @@
+﻿DobihCode,Name,NameSingular,DisplayOrder,Description
+M,Munros,Munro,1,"Scottish hills at least 3,000ft in height regarded by the SMC as distinct and separate mountains, based on a list originally published in 1891."
+MT,Munro tops,Munro top,2,"Subsidiary summits of the Munros (Scottish hills at least 3,000ft in height regarded by the SMC as distinct and separate mountains)."
+C,Corbetts,Corbett,3,"Scottish hills between 2,500 and 2,999ft high with a drop of at least 500ft (152.4m) on all sides."
+CT,Corbett tops,Corbett top,4,"Subsidiary summits of the Corbetts (Scottish hills between 2,500 and 2999ft high with a drop of at least 500ft (152.4m) on all sides)."
+G,Grahams,Graham,5,"Scottish hills at least 600m high and below 762m (2,500ft) with a drop of at least 150m on all sides."
+GT,Graham tops,Graham top,6,"Subsidiary summits of the Grahams (Scottish hills at least 600m high and below 762m (2,500ft) with a drop of at least 150m on all sides)."
+D,Donalds,Donald,7,"Hills in the Scottish Lowlands at least 2,000ft high, over 100ft (30.5m) in prominence, and which also have ""sufficient topographical merit""."
+DT,Donald tops,Donald top,8,"Hills in the Scottish Lowlands of at least 2,000ft (610m) in height with a drop of at least 50ft (15m) between each elevation and any higher elevation. Further, elevations separated from higher elevations by a drop of less than 100ft (30m) are required to have ""sufficient topographical merit"""
+Mur,Murdos,Murdo,9,"Scottish hills at least 3,000ft in height with a drop of at least 30m on all sides."
+DDew,Donald Deweys,Donald Dewey,10,Hills in the Scottish Lowlands at least 500m high and below 609.6m with a drop of at least 30m on all sides.
+HF,Highland Fives,Highland Five,11,Hills in the Scottish Highlands and Islands at least 500m high and below 600m with a drop of at least 30m on all sides.
+Ma,Marilyns,Marilyn,12,Hill of any height with a prominence or drop of 150m (nearly 500ft) or more on all sides.
+Ma=,Twin Marilyns,Twin Marilyn,13,A summit of equal height to another Marilyn where the drop between the two is less than 150m and at least 30m.
+Hu,HuMPs,HuMP,14,Hills of any height with a drop of 100m or more on all sides. The name HuMP stands for HUndred Metre Prominence.
+Hu=,Twin HuMPs,Twin HuMP,15,A summit of equal height to another HuMP where the drop between the two summits is at least 30m but less than 100m.
+Tu,TuMPs,TuMP,16,"Hills in Scotland, England, Wales, the Isle of Man or Channel Islands which is separated from adjacent tops by a height difference of at least 30m on all sides."
+Sim,Simms,Simm,17,"Hills in England, Wales or Scotland over 600m high with a drop of at least 30m all round."
+5,Dodds,Dodd,18,"Hills in Scotland, England, Wales, the Isle of Man and Ireland between 500m and 599.9m high with a drop of at least 30m on all sides."
+F,Furths,Furth,19,"English, Welsh and Irish summits equivalent to the Munros (Scottish hills at least 3,000ft in height regarded by the SMC as distinct and separate mountains)."
+Hew,Hewitts,Hewitt,20,"Hills in England, Wales and Ireland at least 2,000ft high with a drop of at least 30m on all sides."
+N,Nuttalls,Nuttall,21,"Hills in England and Wales at least 2,000ft high with a drop of at least 15m on all sides, as published in The Mountains of England and Wales."
+Dew,Deweys,Dewey,22,"Hills in England, Wales and the Isle of Man at least 500m high and below 609.6m with a drop of at least 30m on all sides."
+4,400m to 499m TuMPs,400m to 499m TuMP,23,"Hills in Scotland, England, Wales, the Isle of Man or Channel Islands which is separated from adjacent tops by a height difference of at least 30m on all sides."
+3,300m to 399m TuMPs,300m to 399m TuMP,24,"Hills in Scotland, England, Wales, the Isle of Man or Channel Islands which is separated from adjacent tops by a height difference of at least 30m on all sides."
+2,200m to 299m TuMPs,200m to 299m TuMP,25,"Hills in Scotland, England, Wales, the Isle of Man or Channel Islands which is separated from adjacent tops by a height difference of at least 30m on all sides."
+1,100m to 199m TuMPs,100m to 199m TuMP,26,"Hills in Scotland, England, Wales, the Isle of Man or Channel Islands which is separated from adjacent tops by a height difference of at least 30m on all sides."
+0,0m to 99m TuMPs,0m to 99m TuMP,27,"Hills in Scotland, England, Wales, the Isle of Man or Channel Islands which is separated from adjacent tops by a height difference of at least 30m on all sides."
+W,Wainwrights,Wainwright,28,The 214 hills listed in volumes 1-7 of Wainwright's A Pictorial Guide to the Lakeland Fells.
+WO,Wainwright outlying fells,Wainwright outlying fell,29,Hills listed in The Outlying Fells of Lakeland.
+B,Birketts,Birkett,30,"Lake District hills over 1,000ft listed in Bill Birkett's Complete Lakeland Fells."
+E,Ethels,Ethel,31,Listing of 95 summits in the Peak District.
+HHB,High hills of Britain,High hill of Britain,32,Ground at least 838m above sea level on the mainland and above 770m on islands.
+Sy,Synges,Synge,33,"Lake District hills over 1,000ft published in Tim Synges' The Lakeland Summits."
+Fel,Fellrangers,Fellranger,34,Lake District hills included in Mark Richards' Fellranger walking series.
+CoH,County tops (historic pre-1974),County top (historic pre-1974),35,The highest point within (or sometimes on) the boundary of each county.
+CoH=,Twin county tops (historic pre-1974),Twin county top (historic pre-1974),36,A top of equal height to the highest point within the boundary of each county.
+CoU,County tops (current county or unitary authority),County top (current county or unitary authority),37,The highest point within (or sometimes on) the boundary of each county.
+CoU=,Twin county tops (current county or unitary authority),Twin county top (current county or unitary authority),38,A top of equal height to the highest point within the boundary of each county.
+CoA,County tops (administrative 1974 to mid-1990s),County top (administrative 1974 to mid-1990s),39,The highest point within (or sometimes on) the boundary of each county.
+CoA=,Twin county tops (administrative 1974 to mid-1990s),Twin county top (administrative 1974 to mid-1990s),40,A top of equal height to the highest point within the boundary of each county.
+CoL,County tops (current London boroughs),County top (current London boroughs),41,The highest point within (or sometimes on) the boundary of each county.
+CoL=,Twin county tops (current London boroughs),Twin county top (current London boroughs),42,A top of equal height to the highest point within the boundary of each county.
+SIB,Significant islands of Britain,Significant island of Britain,43,"Naturally occurring land, which at MHWS is shown on available OS mapping to be completely surrounded by water, with either an area of at least 30 hectares within the MHWS contour line or an ""easily accessed"" summit prominence of at least 30m above MSL, all man-made links and structures being discounted."
+sMa,Sub-Marilyns,Sub-Marilyn,44,Hills not meeting the prominence criterion for Marilyns by 10m or less.
+sHu,Sub-HuMPs,Sub-HuMP,45,Hills not meeting the prominence criterion for HuMPs by 10m or less.
+sSim,Sub-Simms,Sub-Simm,46,Hills not meeting the prominence criterion for Simms by 10m or less.
+s5,Sub-Dodds,Sub-Dodd,47,Hills not meeting the prominence criterion for Dodds by 10m or less.
+s4,Sub 400m to 499m TuMPs,Sub 400m to 499m TuMP,48,Hills not meeting the prominence criterion for 400m to 499m TuMPs by 10m or less.
+BL,Buxton & Lewis,Buxton & Lewis,49,Hills listed by Buxton & Lewis (1986).
+Bg,Bridges,Bridge,50,Hills listed by Bridge (1973).
+Y,Yeamans,Yeaman,51,"Scottish hills with a drop of 100m, or, failing that, at least 5km (walking distance) from any higher point."
+Cm,Clems,Clem,52,"Hills in England, Wales and the Isle of Man with a drop of 100m, or, failing that, at least 5km (walking distance) from any higher point."
+T100,Trail 100s,Trail 100,53,List of 100 hills published in Trail magazine.
+xMT,Deleted Munro tops,Deleted Munro top,54,Deleted Munro top
+xC,Deleted Corbetts,Deleted Corbett,55,Deleted Corbett
+xG,Deleted Grahams,Deleted Graham,56,Deleted Graham
+xN,Deleted Nuttalls,Deleted Nuttall,57,Deleted Nuttall
+xDT,Deleted Donald tops,Deleted Donald top,58,Deleted Donald top
+Dil,Dillons,Dillon,59,"Hills in Ireland at least 2,000ft high published in The Mountains of Ireland."
+VL,Vandeleur-Lynams,Vandeleur-Lynam,60,Hills in Ireland at least 600m high with a drop of at least 15m on all sides.
+A,Arderins,Arderin,61,Hills in Ireland at least 500m high with a drop of at least 30m on all sides.
+Ca,Carns,Carn,62,Hills in Ireland between 400m and 499.9m high with a drop of at least 30m on all sides.
+Bin,Binnions,Binnion,63,Hills in Ireland with height below 400m and a drop of at least 100m on all sides.
+O,Other lists,Other list,64,Other list
+Un,Unclassifieds,Unclassified,65,Unclassified

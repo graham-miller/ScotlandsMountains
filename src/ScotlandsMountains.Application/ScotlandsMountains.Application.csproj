@@ -7,7 +7,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="UseCases\DobihFiles\Factories\Resources\Classifications.csv" />
+    <None Remove="UseCases\DobihFiles\Factories\Resources\Explorer.txt" />
+    <None Remove="UseCases\DobihFiles\Factories\Resources\ExplorerActive.txt" />
+    <None Remove="UseCases\DobihFiles\Factories\Resources\Landranger.txt" />
+    <None Remove="UseCases\DobihFiles\Factories\Resources\LandrangerActive.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="UseCases\DobihFiles\Factories\Resources\Classifications.csv" />
+    <EmbeddedResource Include="UseCases\DobihFiles\Factories\Resources\Explorer.txt" />
+    <EmbeddedResource Include="UseCases\DobihFiles\Factories\Resources\ExplorerActive.txt" />
+    <EmbeddedResource Include="UseCases\DobihFiles\Factories\Resources\Landranger.txt" />
+    <EmbeddedResource Include="UseCases\DobihFiles\Factories\Resources\LandrangerActive.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CsvHelper" Version="33.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.0" />
   </ItemGroup>
 
