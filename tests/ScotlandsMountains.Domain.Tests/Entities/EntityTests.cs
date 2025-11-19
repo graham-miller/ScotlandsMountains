@@ -1,8 +1,6 @@
-﻿using NUnit.Framework;
-using ScotlandsMountains.Domain.Entities;
-using System;
+﻿using ScotlandsMountains.Domain.Entities;
 
-namespace ScotlandsMountains.Domain.Tests;
+namespace ScotlandsMountains.Domain.Tests.Entities;
 
 [TestFixture]
 public class EntityTests
@@ -25,7 +23,7 @@ public class EntityTests
     }
 
     [Test]
-    public void Equals_False_WhenComparedToNull()
+    public void Equals_Null_ReturnsFalse()
     {
         // arrange
         var entityA = new EntityIntIdTypeA(1);
@@ -43,7 +41,7 @@ public class EntityTests
     }
 
     [Test]
-    public void Equals_True_WhenSameReference()
+    public void Equals_SameReference_ReturnsTrue()
     {
         // arrange
         var entity = new EntityIntIdTypeA();
@@ -53,7 +51,7 @@ public class EntityTests
     }
 
     [Test]
-    public void Equals_False_WhenDifferentTransientInstances()
+    public void Equals_DifferentTransientInstance_ReturnsFalse()
     {
         // arrange
         var entityA1 = new EntityIntIdTypeA();
@@ -69,18 +67,7 @@ public class EntityTests
     }
 
     [Test]
-    public void GetHashCode_NotEqual_WhenDifferentTransientInstances()
-    {
-        // arrange
-        var entityA1 = new EntityIntIdTypeA();
-        var entityA2 = new EntityIntIdTypeA();
-
-        // act & assert
-        Assert.That(entityA1.GetHashCode(), Is.Not.EqualTo(entityA2.GetHashCode()));
-    }
-
-    [Test]
-    public void Equals_True_WhenSameIntIdAndType()
+    public void Equals_SameIntIdAndType_ReturnsTrue()
     {
         // arrange
         var entityA1 = new EntityIntIdTypeA(1);
@@ -96,7 +83,7 @@ public class EntityTests
     }
 
     [Test]
-    public void Equals_False_WhenDifferentIntId()
+    public void Equals_DifferentIntId_ReturnsFalse()
     {
         // arrange
         var entityA1 = new EntityIntIdTypeA(1);
@@ -112,7 +99,7 @@ public class EntityTests
     }
 
     [Test]
-    public void Equals_False_WhenDifferentType()
+    public void Equals_DifferentType_ReturnsFalse()
     {
         // arrange
         const int SameId = 42;
@@ -129,7 +116,7 @@ public class EntityTests
     }
 
     [Test]
-    public void Equals_True_WhenSameGuidIdAndType()
+    public void Equals_SameGuidIdAndType_ReturnsTrue()
     {
         // arrange
         var sameId = Guid.NewGuid();
@@ -146,7 +133,7 @@ public class EntityTests
     }
 
     [Test]
-    public void Equals_False_WhenDifferentGuidId()
+    public void Equals_DifferentGuidId_ReturnsFalse()
     {
         // arrange
         var entityC1 = new EntityGuidId(Guid.NewGuid());
@@ -159,5 +146,16 @@ public class EntityTests
             Assert.That(entityC1 != entityC2, Is.True);
             Assert.That(entityC1.GetHashCode(), Is.Not.EqualTo(entityC2.GetHashCode()));
         }
+    }
+
+    [Test]
+    public void GetHashCode_DifferentTransientInstances_AreNotEqual()
+    {
+        // arrange
+        var entityA1 = new EntityIntIdTypeA();
+        var entityA2 = new EntityIntIdTypeA();
+
+        // act & assert
+        Assert.That(entityA1.GetHashCode(), Is.Not.EqualTo(entityA2.GetHashCode()));
     }
 }

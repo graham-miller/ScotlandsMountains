@@ -1,26 +1,23 @@
 ﻿using Azure.Messaging.ServiceBus;
 using ScotlandsMountains.Application.Ports;
+using ScotlandsMountains.ServiceDefaults;
 
 public class AzureServiceBusNotificationService : IFileUploadNotificationService
 {
     private readonly ServiceBusClient _client;
     
-    private const string TopicName = "file-upload-topic";
-
     public AzureServiceBusNotificationService(ServiceBusClient client)
     {
         _client = client;
     }
 
-    public async Task PublishFileUploadedNotificationAsync(string fileType, string containerName, string fileName, CancellationToken cancellationToken)
+    public async Task PublishFileUploadedNotificationAsync(string containerName, string fileName, CancellationToken cancellationToken)
     {
-        ServiceBusSender sender = _client.CreateSender(TopicName);
+        ServiceBusSender sender = _client.CreateSender(AspireConstants.FileUploadTopic);
 
         var notification = new {
-            FileType = fileType, 
             ContainerName = containerName, 
             FileName = fileName, 
-            UploadedAt = DateTimeOffset.UtcNow
         };
 
         var jsonPayload = System.Text.Json.JsonSerializer.Serialize(notification);

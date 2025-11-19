@@ -5,7 +5,7 @@ namespace ScotlandsMountains.Application.UseCases.DobihFiles;
 
 public record UploadDobihFileCommand(Stream Content) : IRequest<Result>;
 
-internal class UploadDobihFileCommandHandler : IRequestHandler<UploadDobihFileCommand, Result>
+public class UploadDobihFileCommandHandler : IRequestHandler<UploadDobihFileCommand, Result>
 {
     private readonly IFileStorageService _fileStorageService;
     private readonly IFileUploadNotificationService _fileUploadNotificationService;
@@ -15,7 +15,7 @@ internal class UploadDobihFileCommandHandler : IRequestHandler<UploadDobihFileCo
         IFileUploadNotificationService fileUploadNotificationService)
     {
         _fileStorageService = fileStorageService;
-        this._fileUploadNotificationService = fileUploadNotificationService;
+        _fileUploadNotificationService = fileUploadNotificationService;
     }
 
     public async Task<Result> HandleAsync(UploadDobihFileCommand request, CancellationToken cancellationToken = default)
@@ -25,7 +25,7 @@ internal class UploadDobihFileCommandHandler : IRequestHandler<UploadDobihFileCo
 
         var uri = await _fileStorageService.UploadFileAsync(containerName, fileName, request.Content, cancellationToken);
 
-        await _fileUploadNotificationService.PublishFileUploadedNotificationAsync("Dobih", containerName, fileName, cancellationToken);
+        await _fileUploadNotificationService.PublishFileUploadedNotificationAsync(containerName, fileName, cancellationToken);
 
         return Result.Success();
     }

@@ -15,6 +15,9 @@
     <Project Path="src/ScotlandsMountains.ServiceDefaults/ScotlandsMountains.ServiceDefaults.csproj" Id="11751dfe-2c7a-4f7e-ad09-43b433909cc9" />
   </Folder>
   <Folder Name="/tests/">
+    <Project Path="tests/ScotlandsMountains.Application.Tests/ScotlandsMountains.Application.Tests.csproj" Id="3d1f903c-2ac3-4b79-b87d-c0cff1be3ddf" />
     <Project Path="tests/ScotlandsMountains.Domain.Tests/ScotlandsMountains.Domain.Tests.csproj" Id="30ed4f77-8b1f-4d04-aeaa-ba0584dd9e29" />
+    <Project Path="tests/ScotlandsMountains.FunctionApp.Tests/ScotlandsMountains.FunctionApp.Tests.csproj" Id="12bdf920-d0a1-426b-aa30-82c2ae7a411f" />
+    <Project Path="tests/ScotlandsMountains.Infrastructure.Tests/ScotlandsMountains.Infrastructure.Tests.csproj" Id="6d14c605-5993-4f00-bfe6-f4afae893145" />
   </Folder>
 </Solution>
