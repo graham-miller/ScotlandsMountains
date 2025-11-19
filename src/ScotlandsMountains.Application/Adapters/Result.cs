@@ -1,4 +1,4 @@
-﻿namespace ScotlandsMountains.Application.Dtos;
+﻿namespace ScotlandsMountains.Application.Adapters;
 
 public class Result
 {

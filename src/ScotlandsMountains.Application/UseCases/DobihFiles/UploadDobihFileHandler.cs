@@ -1,7 +1,7 @@
-﻿using ScotlandsMountains.Application.Dtos;
+﻿using ScotlandsMountains.Application.Adapters;
 using ScotlandsMountains.Application.Ports;
 
-namespace ScotlandsMountains.Application.UseCases.Mountains;
+namespace ScotlandsMountains.Application.UseCases.DobihFiles;
 
 public record UploadDobihFileCommand(Stream Content) : IRequest<Result>;
 

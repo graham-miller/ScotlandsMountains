@@ -1,4 +1,5 @@
 using ScotlandsMountains.AppHost.Extensions;
+using ScotlandsMountains.ServiceDefaults;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
@@ -6,7 +7,7 @@ var sql = builder
     .AddSqlServer("mssql")
     .WithHostPort(14330)
     .WithScotlandsMountainsDataBindMount()
-    .AddDatabase("ScotlandsMountains");
+    .AddDatabase(AspireConstants.Database);
 
 var migration = builder
     .AddProject<Projects.ScotlandsMountains_MigrationService>("migration")
@@ -14,16 +15,16 @@ var migration = builder
     .WaitFor(sql);
 
 var storage = builder
-    .AddAzureStorage("storage")
+    .AddAzureStorage(AspireConstants.Storage)
     .RunAsEmulatorWithDefaultPorts()
-    .AddBlobs("blobs");
+    .AddBlobs(AspireConstants.Blobs);
 
 var messaging = builder
-    .AddAzureServiceBus("messaging")
+    .AddAzureServiceBus(AspireConstants.ServiceBus)
     .RunAsEmulator();
 
-var uploadTopic = messaging.AddServiceBusTopic("file-upload-topic");
-var subscription = uploadTopic.AddServiceBusSubscription("file-upload-sub");
+var uploadTopic = messaging.AddServiceBusTopic(AspireConstants.FileUploadTopic);
+var subscription = uploadTopic.AddServiceBusSubscription(AspireConstants.FileUploadSubscription);
 
 var functions = builder
     .AddAzureFunctionsProject<Projects.ScotlandsMountains_FunctionApp>("functions")

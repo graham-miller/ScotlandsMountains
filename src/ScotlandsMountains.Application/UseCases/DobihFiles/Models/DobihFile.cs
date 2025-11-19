@@ -3,7 +3,7 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using System.IO.Compression;
 
-namespace ScotlandsMountains.FunctionApp.ProcessDobihFile.Models;
+namespace ScotlandsMountains.Application.UseCases.DobihFiles.Models;
 
 internal class DobihFile
 {

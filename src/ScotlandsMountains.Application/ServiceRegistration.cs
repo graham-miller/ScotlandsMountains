@@ -1,14 +1,14 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.DependencyInjection;
 using ScotlandsMountains.Application.Ports;
 
 namespace ScotlandsMountains.Application;
 
 public static class ServiceRegistration
 {
-    public static IHostApplicationBuilder AddApplicationServices(this IHostApplicationBuilder builder)
+    public static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        Mediator.RegisterRequestHandlers(builder);
+        Mediator.Register(services);
 
-        return builder;
+        return services;
     }
 }

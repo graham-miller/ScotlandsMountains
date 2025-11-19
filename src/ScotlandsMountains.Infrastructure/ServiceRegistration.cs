@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using ScotlandsMountains.Application.Ports;
 using ScotlandsMountains.Infrastructure.Storage;
 
@@ -7,11 +6,11 @@ namespace ScotlandsMountains.Infrastructure;
 
 public static class ServiceRegistration
 {
-    public static IHostApplicationBuilder AddInfrastructureServices(this IHostApplicationBuilder builder)
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services)
     {
-        builder.Services.AddScoped<IFileStorageService, AzureBlobStorageService>();
-        builder.Services.AddScoped<IFileUploadNotificationService, AzureServiceBusNotificationService>();
+        services.AddScoped<IFileStorageService, AzureBlobStorageService>();
+        services.AddScoped<IFileUploadNotificationService, AzureServiceBusNotificationService>();
 
-        return builder;
+        return services;
     }
 }

@@ -1,4 +1,4 @@
-﻿using ScotlandsMountains.Application.Dtos;
+﻿using ScotlandsMountains.Application.Adapters;
 using ScotlandsMountains.Application.Ports;
 
 namespace ScotlandsMountains.Application.UseCases.Mountains;

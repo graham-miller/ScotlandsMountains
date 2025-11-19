@@ -12,7 +12,6 @@ internal static class ResourceBuilderExtensions
              {
                  if (string.IsNullOrEmpty(url.DisplayText))
                  {
-                     url.DisplayText = $"Swagger UI ({url.Endpoint?.Scheme?.ToLower()})";
                      url.Url += "/swagger";
 
                      if (url?.Endpoint?.Scheme == "http")

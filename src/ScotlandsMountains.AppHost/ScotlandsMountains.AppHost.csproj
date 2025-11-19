@@ -19,6 +19,7 @@
     <ProjectReference Include="..\ScotlandsMountains.Api\ScotlandsMountains.Api.csproj" />
     <ProjectReference Include="..\ScotlandsMountains.FunctionApp\ScotlandsMountains.FunctionApp.csproj" />
     <ProjectReference Include="..\ScotlandsMountains.MigrationService\ScotlandsMountains.MigrationService.csproj" />
+    <ProjectReference Include="..\ScotlandsMountains.ServiceDefaults\ScotlandsMountains.ServiceDefaults.csproj" IsAspireProjectResource="false" />
   </ItemGroup>
 
 </Project>

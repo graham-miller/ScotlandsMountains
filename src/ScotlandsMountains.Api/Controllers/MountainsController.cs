@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ScotlandsMountains.Application.Dtos;
 using ScotlandsMountains.Application.Ports;
 using ScotlandsMountains.Application.UseCases.Mountains;
 
