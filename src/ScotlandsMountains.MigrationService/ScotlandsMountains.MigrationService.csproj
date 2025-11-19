@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ScotlandsMountains.Infrastructure\ScotlandsMountains.Infrastructure.csproj" />
+    <ProjectReference Include="..\ScotlandsMountains.ServiceDefaults\ScotlandsMountains.ServiceDefaults.csproj" />
   </ItemGroup>
 
 </Project>

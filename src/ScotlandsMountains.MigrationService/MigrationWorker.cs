@@ -2,9 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using ScotlandsMountains.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ScotlandsMountains.MigrationService;
 
