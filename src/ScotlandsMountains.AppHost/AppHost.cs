@@ -3,16 +3,12 @@ using ScotlandsMountains.ServiceDefaults;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-var sql = builder
-    .AddSqlServer("mssql")
+var db = builder
+    .AddSqlServer("sql")
     .WithHostPort(14330)
     .WithScotlandsMountainsDataBindMount()
-    .AddDatabase(AspireConstants.Database);
-
-var migration = builder
-    .AddProject<Projects.ScotlandsMountains_MigrationService>("migration")
-    .WithReference(sql)
-    .WaitFor(sql);
+    .AddDatabase(AspireConstants.Database)
+    .WithMigrationsCommands();
 
 var storage = builder
     .AddAzureStorage(AspireConstants.Storage)
@@ -27,20 +23,17 @@ var uploadTopic = messaging.AddServiceBusTopic(AspireConstants.FileUploadTopic);
 var subscription = uploadTopic.AddServiceBusSubscription(AspireConstants.FileUploadSubscription);
 
 var functions = builder
-    .AddAzureFunctionsProject<Projects.ScotlandsMountains_FunctionApp>("functions")
-    .WithReference(sql)
-    .WithReference(messaging)
-    .WithReference(storage)
-    .WaitFor(messaging)
-    .WaitFor(storage);
+    .AddAzureFunctionsProject<Projects.ScotlandsMountains_FunctionApp>("func")
+    .WithEnvironment("AzureFunctionsWebHost__hostid", "funcstorage")
+    .WithReference(db).WaitFor(db)
+    .WithReference(messaging).WaitFor(messaging)
+    .WithReference(storage).WaitFor(storage);
 
 var api = builder
     .AddProject<Projects.ScotlandsMountains_Api>("api")
     .WithSwaggerUrls()
-    .WithReference(sql)
-    .WithReference(storage)
-    .WaitFor(migration)
-    .WithReference(messaging);
-
+    .WithReference(db).WaitFor(db)
+    .WithReference(storage).WaitFor(storage)
+    .WithReference(messaging).WaitFor(messaging);
 
 builder.Build().Run();
