@@ -24,7 +24,6 @@ var subscription = uploadTopic.AddServiceBusSubscription(AspireConstants.FileUpl
 
 var functions = builder
     .AddAzureFunctionsProject<Projects.ScotlandsMountains_FunctionApp>("func")
-    .WithEnvironment("AzureFunctionsWebHost__hostid", "funcstorage")
     .WithReference(db).WaitFor(db)
     .WithReference(messaging).WaitFor(messaging)
     .WithReference(storage).WaitFor(storage);
