@@ -21,6 +21,7 @@ public class Mountain : Entity
         ColGridRef = colGridRef;
         ColHeight = colHeight;
         DobihNumber = dobihNumber;
+        Region = region;
     }
 
     public string Name { get; set; } = null!;

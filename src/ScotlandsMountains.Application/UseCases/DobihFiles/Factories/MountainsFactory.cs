@@ -1,40 +1,39 @@
-﻿using ScotlandsMountains.Application.Ports;
-using ScotlandsMountains.Application.UseCases.DobihFiles.Models;
+﻿using ScotlandsMountains.Application.UseCases.DobihFiles.Models;
 using ScotlandsMountains.Domain.Entities;
 
 namespace ScotlandsMountains.Application.UseCases.DobihFiles.Factories;
 
 internal class MountainsFactory
 {
-    private readonly IScotlandsMountainsDbContext _context;
+    private readonly Dictionary<char, Country> _countryLookUp = [];
+    private readonly Dictionary<string, County> _countyLookUp = [];
+    private readonly Dictionary<string, Region> _regionLookup = [];
+    private readonly Dictionary<string, Map> _explorerMapLookup = [];
+    private readonly Dictionary<string, Map> _landrangerMapLookup = [];
+    private readonly Dictionary<string, Classification> _classificationLookup = [];
+    private readonly List<string> _classificationsCodes = [];
+    private readonly Dictionary<int, Mountain> _parents = [];
 
-    private bool _isLookupsLoaded = false;
-    private Dictionary<char, Country> _countryLookUp = [];
-    private Dictionary<string, County> _countyLookUp = [];
-    private Dictionary<string, Region> _regionLookup = [];
-    private Dictionary<string, Map> _explorerMapLookup = [];
-    private Dictionary<string, Map> _landrangerMapLookup = [];
-    private Dictionary<string, Classification> _classificationLookup = [];
-    private List<string> _classificationsCodes = [];
-    private readonly Dictionary<int, Mountain> _parents = new();
-
-    public MountainsFactory(IScotlandsMountainsDbContext context)
+    public MountainsFactory(List<Region> regions, List<Map> maps, List<Classification> classifications, List<County> counties, List<Country> countries)
     {
-        _context = context;
+        _countryLookUp = countries.ToDictionary(x => x.DobihCode);
+        _countyLookUp = counties.ToDictionary(x => x.Name);
+        _regionLookup = regions.ToDictionary(x => x.DobihCode);
+        _explorerMapLookup = maps.Where(x => x.Series.Name == MapSeries.Explorer).ToDictionary(x => x.Code);
+        _landrangerMapLookup = maps.Where(x => x.Series.Name == MapSeries.Landranger).ToDictionary(x => x.Code);
+        _classificationLookup = classifications.ToDictionary(x => x.DobihCode);
+        _classificationsCodes = _classificationLookup.Keys.ToList();
     }
 
-    internal IEnumerable<Mountain> BuildFrom(DobihRecordsByNumber file)
+    internal List<Mountain> BuildFrom(DobihRecordsByNumber file)
     {
-        foreach (var record in file.All)
-        {
-            yield return CreateFrom(record);
-        }
+        return file.All
+            .Select(CreateFrom)
+            .ToList();
     }
 
     public Mountain CreateFrom(DobihRecord record)
     {
-        if (!_isLookupsLoaded) LoadLookups();
-
         var (name, aliases) = record.GetNameAndAliases();
         var region = _regionLookup[record.Region];
 
@@ -91,18 +90,6 @@ internal class MountainsFactory
         _parents.Add(mountain.DobihNumber, mountain);
 
         return mountain;
-    }
-
-    private void LoadLookups()
-    {
-        _countryLookUp = _context.Countries.ToDictionary(x => x.DobihCode);
-        _countyLookUp = _context.Counties.ToDictionary(x => x.Name);
-        _regionLookup = _context.Regions.ToDictionary(x => x.DobihCode);
-        _explorerMapLookup = _context.Maps.Where(x => x.Series.Name == MapSeries.Explorer).ToDictionary(x => x.Code);
-        _landrangerMapLookup = _context.Maps.Where(x => x.Series.Name == MapSeries.Landranger).ToDictionary(x => x.Code);
-        _classificationLookup = _context.Classifications.ToDictionary(x => x.DobihCode);
-        _classificationsCodes = _classificationLookup.Keys.ToList();
-        _isLookupsLoaded = true;
     }
 }
 

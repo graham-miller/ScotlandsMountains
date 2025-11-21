@@ -24,23 +24,18 @@ internal class ImportDobihFileCommandHandler : IRequestHandler<ImportDobihFileCo
     {
         var stream = await _fileStorageService.DownloadFileAsync(request.ContainerName, request.FileName, cancellationToken);
         var file = new DobihRecordsByNumber(stream);
-
         var regions = RegionsFactory.BuildFrom(file);
-        _context.Regions.AddRange(regions);
-
         var maps = MapsFactory.BuildFrom(file);
-        _context.Maps.AddRange(maps);
-
         var classifications = ClassificationsFactory.Build();
-        _context.Classifications.AddRange(classifications);
-
         var counties = CountiesFactory.BuildFrom(file);
-        _context.Counties.AddRange(counties);
-
         var countries = CountriesFactory.Build();
-        _context.Countries.AddRange(countries);
+        var mountains = new MountainsFactory(regions, maps, classifications, counties, countries).BuildFrom(file);
 
-        var mountains = new MountainsFactory(_context).BuildFrom(file);
+        _context.Regions.AddRange(regions);
+        _context.Maps.AddRange(maps);
+        _context.Classifications.AddRange(classifications);
+        _context.Counties.AddRange(counties);
+        _context.Countries.AddRange(countries);
         _context.Mountains.AddRange(mountains);
 
         await _context.SaveChangesAsync(cancellationToken);

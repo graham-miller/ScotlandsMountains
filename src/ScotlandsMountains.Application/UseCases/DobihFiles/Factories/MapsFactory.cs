@@ -6,7 +6,7 @@ namespace ScotlandsMountains.Application.UseCases.DobihFiles.Factories;
 
 internal static class MapsFactory
 {
-    internal static IEnumerable<Map> BuildFrom(DobihRecordsByNumber file)
+    internal static List<Map> BuildFrom(DobihRecordsByNumber file)
     {
         var publisher = new MapPublisher(MapPublisher.OrdnanceSurvey);
 
@@ -17,7 +17,7 @@ internal static class MapsFactory
         var explorerMaps = BuildSeries(explorerSeries);
         var landrangerMaps = BuildSeries(landrangerSeries);
 
-        return explorerMaps.Concat(landrangerMaps);
+        return explorerMaps.Concat(landrangerMaps).ToList();
     }
 
     private static IEnumerable<Map> BuildSeries(MapSeries series)

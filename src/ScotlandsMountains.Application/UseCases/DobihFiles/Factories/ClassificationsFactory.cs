@@ -7,7 +7,7 @@ namespace ScotlandsMountains.Application.UseCases.DobihFiles.Factories;
 
 internal static class ClassificationsFactory
 {
-    internal static IEnumerable<Classification> Build()
+    internal static List<Classification> Build()
     {
         var name = $"{typeof(ClassificationsFactory).Namespace}.Resources.Classifications.csv";
 
@@ -18,15 +18,10 @@ internal static class ClassificationsFactory
         using var reader = new StreamReader(file);
         using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
 
-        csv.Read();
-        csv.ReadHeader();
-
-        while (csv.Read())
-        {
-            var info = csv.GetRecord<ClassificationInfo>();
-            
-            yield return info.ToClassification();
-        }
+        return csv
+            .GetRecords<ClassificationInfo>()
+            .Select(c => c.ToClassification())
+            .ToList();
     }
 
     internal class ClassificationInfo

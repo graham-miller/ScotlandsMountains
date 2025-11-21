@@ -5,7 +5,7 @@ namespace ScotlandsMountains.Application.UseCases.DobihFiles.Factories;
 
 internal static class RegionsFactory
 {
-    public static IEnumerable<Region> BuildFrom(DobihRecordsByNumber records)
+    public static List<Region> BuildFrom(DobihRecordsByNumber records)
     {
         return records.All
         .Select(line => line.Region)
@@ -23,7 +23,8 @@ internal static class RegionsFactory
             var displayOrder = index + 1;
 
             return new Region(code, name, displayOrder, region);
-        });
+        })
+        .ToList();
     }
 
 }
