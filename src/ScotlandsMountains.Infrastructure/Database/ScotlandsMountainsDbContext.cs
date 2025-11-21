@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ScotlandsMountains.Application.Ports;
 using ScotlandsMountains.Domain.Entities;
 
 namespace ScotlandsMountains.Infrastructure.Database;
@@ -10,7 +9,7 @@ To create a new migration, use the following command in the Package Manager Cons
     Add-Migration InitialCreate -Project src\ScotlandsMountains.Infrastructure -StartupProject src\ScotlandsMountains.Api -OutputDir Database\Migrations
 */
 
-public class ScotlandsMountainsDbContext : DbContext, IScotlandsMountainsDbContext
+public class ScotlandsMountainsDbContext : DbContext
 {
     public DbSet<DobihFile> DobihFiles { get; set; }
 

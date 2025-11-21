@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ScotlandsMountains.Application.Adapters;
+﻿using ScotlandsMountains.Application.Adapters;
 using ScotlandsMountains.Application.Ports;
 using ScotlandsMountains.Application.UseCases.DobihFiles.Factories;
 using ScotlandsMountains.Application.UseCases.DobihFiles.Models;
@@ -10,22 +9,20 @@ public record ImportDobihFileCommand(string ContainerName, string FileName) : IR
 
 internal class ImportDobihFileCommandHandler : IRequestHandler<ImportDobihFileCommand, Result>
 {
+    private readonly IDobihImportService _dobihImportService;
     private readonly IFileStorageService _fileStorageService;
-    private readonly IScotlandsMountainsDbContext _context;
 
     public ImportDobihFileCommandHandler(
-        IFileStorageService fileStorageService,
-        IScotlandsMountainsDbContext context)
+        IDobihImportService dobihImportService,
+        IFileStorageService fileStorageService)
     {
+        _dobihImportService = dobihImportService;
         _fileStorageService = fileStorageService;
-        _context = context;
     }
 
     public async Task<Result> HandleAsync(ImportDobihFileCommand request, CancellationToken cancellationToken = default)
     {
-        var file = await _context.DobihFiles.SingleAsync(f => f.ContainerName == request.ContainerName && f.FileName == request.FileName);
-        file.StartProcessing();
-        await _context.SaveChangesAsync(cancellationToken);
+        await _dobihImportService.StartProcessingAsync(request.ContainerName, request.FileName, cancellationToken);
 
         var stream = await _fileStorageService.DownloadFileAsync(request.ContainerName, request.FileName, cancellationToken);
         var records = new DobihRecordsByNumber(stream);
@@ -36,16 +33,10 @@ internal class ImportDobihFileCommandHandler : IRequestHandler<ImportDobihFileCo
         var countries = CountriesFactory.Build();
         var mountains = new MountainsFactory(regions, maps, classifications, counties, countries).BuildFrom(records);
 
-        _context.Regions.AddRange(regions);
-        _context.Maps.AddRange(maps);
-        _context.Classifications.AddRange(classifications);
-        _context.Counties.AddRange(counties);
-        _context.Countries.AddRange(countries);
-        _context.Mountains.AddRange(mountains);
-
-        file.CompleteProcessing(records.FileName);
-
-        await _context.SaveChangesAsync(cancellationToken);
+        await _dobihImportService.CompleteProcessingAsync(
+            request.ContainerName, request.FileName, records.FileName,
+            regions, maps, classifications, counties, countries, mountains,
+            cancellationToken);
 
         return Result.Success();
     }

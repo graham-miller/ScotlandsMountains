@@ -22,8 +22,13 @@ public class DobihFilesController : ControllerBase
 
         var command = new UploadDobihFileCommand(file.OpenReadStream());
 
-        await _mediator.SendAsync(command);
+        var result = await _mediator.SendAsync(command);
 
-        return Accepted();
+        if (result.IsFailure)
+        {
+            return BadRequest(result.ErrorMessage);
+        }
+
+        return Ok(result.Value);
     }
 }

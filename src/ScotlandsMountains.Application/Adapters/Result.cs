@@ -14,6 +14,8 @@ public class Result
 
     public bool IsSuccess { get; }
 
+    public bool IsFailure => !IsSuccess;
+
     public string? ErrorMessage { get; }
 }
 

@@ -28,12 +28,18 @@ public class DobihFile : Entity
 
     public void StartProcessing()
     {
+        if (Status != DobihFileStatus.Pending)
+            throw new InvalidOperationException("Cannot start processing a file that is not in Pending status.");
+
         Status = DobihFileStatus.Processing;
         StartedProcessingAt = DateTime.UtcNow;
     }
 
     public void CompleteProcessing(string dobihName)
     {
+        if (Status != DobihFileStatus.Processing)
+            throw new InvalidOperationException("Cannot complete processing a file that is not in Processing status.");
+
         DobihName = dobihName;
         Status = DobihFileStatus.Completed;
         CompletedProcessingAt = DateTime.UtcNow;
@@ -44,5 +50,5 @@ public enum DobihFileStatus
 {
     Pending,
     Processing,
-    Completed
+    Completed,
 }
