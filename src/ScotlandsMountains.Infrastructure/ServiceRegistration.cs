@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using ScotlandsMountains.Application.Ports;
-using ScotlandsMountains.Infrastructure.Database.Repositories;
+using ScotlandsMountains.Infrastructure.Database.Services;
 using ScotlandsMountains.Infrastructure.Storage;
 
 namespace ScotlandsMountains.Infrastructure;

@@ -2,7 +2,7 @@
 using ScotlandsMountains.Application.Ports;
 using ScotlandsMountains.Domain.Entities;
 
-namespace ScotlandsMountains.Infrastructure.Database.Repositories;
+namespace ScotlandsMountains.Infrastructure.Database.Services;
 
 internal class DobihImportService : IDobihImportService
 {

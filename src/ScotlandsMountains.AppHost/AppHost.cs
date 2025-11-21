@@ -18,10 +18,7 @@ var storage = builder
 
 var messaging = builder
     .AddAzureServiceBus(AspireConstants.ServiceBus)
-    .RunAsEmulator(emulator =>
-    {
-        emulator.WithLifetime(ContainerLifetime.Persistent);
-    });
+    .RunAsEmulator(e => e.WithLifetime(ContainerLifetime.Persistent));
 
 var uploadTopic = messaging.AddServiceBusTopic(AspireConstants.FileUploadTopic);
 var subscription = uploadTopic.AddServiceBusSubscription(AspireConstants.FileUploadSubscription);
