@@ -1,4 +1,5 @@
-﻿using ScotlandsMountains.Application.Adapters;
+﻿using Microsoft.EntityFrameworkCore;
+using ScotlandsMountains.Application.Adapters;
 using ScotlandsMountains.Application.Ports;
 using ScotlandsMountains.Application.UseCases.DobihFiles.Factories;
 using ScotlandsMountains.Application.UseCases.DobihFiles.Models;
@@ -22,14 +23,18 @@ internal class ImportDobihFileCommandHandler : IRequestHandler<ImportDobihFileCo
 
     public async Task<Result> HandleAsync(ImportDobihFileCommand request, CancellationToken cancellationToken = default)
     {
+        var file = await _context.DobihFiles.SingleAsync(f => f.ContainerName == request.ContainerName && f.FileName == request.FileName);
+        file.StartProcessing();
+        await _context.SaveChangesAsync(cancellationToken);
+
         var stream = await _fileStorageService.DownloadFileAsync(request.ContainerName, request.FileName, cancellationToken);
-        var file = new DobihRecordsByNumber(stream);
-        var regions = RegionsFactory.BuildFrom(file);
-        var maps = MapsFactory.BuildFrom(file);
+        var records = new DobihRecordsByNumber(stream);
+        var regions = RegionsFactory.BuildFrom(records);
+        var maps = MapsFactory.Build();
         var classifications = ClassificationsFactory.Build();
-        var counties = CountiesFactory.BuildFrom(file);
+        var counties = CountiesFactory.BuildFrom(records);
         var countries = CountriesFactory.Build();
-        var mountains = new MountainsFactory(regions, maps, classifications, counties, countries).BuildFrom(file);
+        var mountains = new MountainsFactory(regions, maps, classifications, counties, countries).BuildFrom(records);
 
         _context.Regions.AddRange(regions);
         _context.Maps.AddRange(maps);
@@ -37,6 +42,8 @@ internal class ImportDobihFileCommandHandler : IRequestHandler<ImportDobihFileCo
         _context.Counties.AddRange(counties);
         _context.Countries.AddRange(countries);
         _context.Mountains.AddRange(mountains);
+
+        file.CompleteProcessing(records.FileName);
 
         await _context.SaveChangesAsync(cancellationToken);
 

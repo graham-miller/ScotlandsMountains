@@ -1,12 +1,11 @@
-﻿using ScotlandsMountains.Application.UseCases.DobihFiles.Models;
-using ScotlandsMountains.Domain.Entities;
+﻿using ScotlandsMountains.Domain.Entities;
 using System.Reflection;
 
 namespace ScotlandsMountains.Application.UseCases.DobihFiles.Factories;
 
 internal static class MapsFactory
 {
-    internal static List<Map> BuildFrom(DobihRecordsByNumber file)
+    internal static List<Map> Build()
     {
         var publisher = new MapPublisher(MapPublisher.OrdnanceSurvey);
 

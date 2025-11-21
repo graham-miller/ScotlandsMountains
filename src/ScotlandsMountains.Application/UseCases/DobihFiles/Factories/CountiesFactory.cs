@@ -5,9 +5,9 @@ namespace ScotlandsMountains.Application.UseCases.DobihFiles.Factories;
 
 internal class CountiesFactory
 {
-    internal static List<County> BuildFrom(DobihRecordsByNumber file)
+    internal static List<County> BuildFrom(DobihRecordsByNumber records)
     {
-        return file.All
+        return records.All
             .SelectMany(line => line.County?.Split('/') ?? [])
             .Where(c => !string.IsNullOrWhiteSpace(c))
             .Distinct()

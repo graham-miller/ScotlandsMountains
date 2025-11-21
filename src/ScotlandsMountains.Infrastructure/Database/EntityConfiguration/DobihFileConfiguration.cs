@@ -8,5 +8,7 @@ internal class DobihFileConfiguration : EntityConfigurationBase<DobihFile>
     public override void Configure(EntityTypeBuilder<DobihFile> builder)
     {
         base.Configure(builder);
+
+        builder.Property(c => c.Status).HasConversion<string>();
     }
 }
