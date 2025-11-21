@@ -6,6 +6,7 @@ public class DobihFileDto
 {
     public DobihFileDto(DobihFile file)
     {
+        Id = file.Id;
         Name = file.DobihName;
         Status = file.Status.ToString();
         UploadedAt = file.UploadedAt;
@@ -13,6 +14,8 @@ public class DobihFileDto
         CompletedProcessingAt = file.CompletedProcessingAt;
     }
 
+    public int Id { get; private set; }
+    
     public string? Name { get; private set; }
 
     public string Status { get; private set; }

@@ -13,6 +13,11 @@ internal class DobihImportService : IDobihImportService
         _context = context;
     }
 
+    public async Task<DobihFile?> GetDobihFileAsync(int id, CancellationToken cancellationToken)
+    {
+        return await _context.DobihFiles.SingleOrDefaultAsync(f => f.Id == id, cancellationToken);
+    }
+
     public async Task<DobihFile> AcceptUploadAsync(string containerName, string fileName, CancellationToken cancellationToken)
     {
         if (await _context.DobihFiles.AnyAsync())

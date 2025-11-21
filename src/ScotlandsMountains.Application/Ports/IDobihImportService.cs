@@ -1,10 +1,11 @@
-﻿using ScotlandsMountains.Application.Adapters;
-using ScotlandsMountains.Domain.Entities;
+﻿using ScotlandsMountains.Domain.Entities;
 
 namespace ScotlandsMountains.Application.Ports;
 
 public interface IDobihImportService
 {
+    Task<DobihFile?> GetDobihFileAsync(int id, CancellationToken cancellationToken);
+
     Task<DobihFile> AcceptUploadAsync(string containerName, string fileName, CancellationToken cancellationToken);
     
     Task<DobihFile> StartProcessingAsync(string containerName, string fileName, CancellationToken cancellationToken);

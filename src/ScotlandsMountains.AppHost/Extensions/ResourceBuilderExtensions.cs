@@ -26,11 +26,13 @@ internal static class ResourceBuilderExtensions
 
     internal static IResourceBuilder<AzureStorageResource> RunAsEmulatorWithDefaultPorts(this IResourceBuilder<AzureStorageResource> builder)
     {
-        builder.RunAsEmulator(azurite =>
+        builder.RunAsEmulator(emulator =>
         {
-            azurite.WithEndpoint("blob", e => e.Port = 10000);
-            azurite.WithEndpoint("queue", e => e.Port = 10001);
-            azurite.WithEndpoint("table", e => e.Port = 10002);
+            emulator
+                .WithEndpoint("blob", e => e.Port = 10000)
+                .WithEndpoint("queue", e => e.Port = 10001)
+                .WithEndpoint("table", e => e.Port = 10002)
+                .WithLifetime(ContainerLifetime.Persistent);
         });
 
         return builder;

@@ -6,6 +6,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 var db = builder
     .AddSqlServer("sql")
     .WithHostPort(14330)
+    .WithLifetime(ContainerLifetime.Persistent)
     .WithScotlandsMountainsDataBindMount()
     .AddDatabase(AspireConstants.Database)
     .WithMigrationsCommands();
@@ -17,7 +18,10 @@ var storage = builder
 
 var messaging = builder
     .AddAzureServiceBus(AspireConstants.ServiceBus)
-    .RunAsEmulator();
+    .RunAsEmulator(emulator =>
+    {
+        emulator.WithLifetime(ContainerLifetime.Persistent);
+    });
 
 var uploadTopic = messaging.AddServiceBusTopic(AspireConstants.FileUploadTopic);
 var subscription = uploadTopic.AddServiceBusSubscription(AspireConstants.FileUploadSubscription);
