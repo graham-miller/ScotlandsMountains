@@ -4,9 +4,9 @@ using ScotlandsMountains.Application.UseCases.DobihFiles.Parsing;
 
 namespace ScotlandsMountains.Application.UseCases.DobihFiles;
 
-public record ImportDobihFileCommand(string ContainerName, string FileName) : IRequest<Result>;
+public record ImportDobihFileCommand(string ContainerName, string FileName) : IRequest<Result<bool>>;
 
-internal class ImportDobihFileCommandHandler : IRequestHandler<ImportDobihFileCommand, Result>
+internal class ImportDobihFileCommandHandler : IRequestHandler<ImportDobihFileCommand, Result<bool>>
 {
     private readonly IDobihImportService _dobihImportService;
     private readonly IFileStorageService _fileStorageService;
@@ -25,7 +25,7 @@ internal class ImportDobihFileCommandHandler : IRequestHandler<ImportDobihFileCo
         _parserFactory = parserFactory;
     }
 
-    public async Task<Result> HandleAsync(ImportDobihFileCommand request, CancellationToken cancellationToken = default)
+    public async Task<Result<bool>> HandleAsync(ImportDobihFileCommand request, CancellationToken cancellationToken = default)
     {
         await _dobihImportService.StartProcessingAsync(request.ContainerName, request.FileName, cancellationToken);
 
@@ -38,6 +38,6 @@ internal class ImportDobihFileCommandHandler : IRequestHandler<ImportDobihFileCo
             output.Regions, output.Maps, output.Classifications, output.Counties, output.Countries, output.Mountains,
             cancellationToken);
 
-        return Result.Success();
+        return Result<bool>.Success(true);
     }
 }
