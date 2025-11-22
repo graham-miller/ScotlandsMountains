@@ -16,7 +16,7 @@ public class DobihFilesController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet("{id:int}", Name = "GetDobihFile")]
+    [HttpGet("{id:int}", Name = nameof(Get))]
     public async Task<IActionResult> Get(int id, CancellationToken cancellationToken = default)
     {
         var query = new GetDobihFileInfoQuery(id);
@@ -28,8 +28,8 @@ public class DobihFilesController : ControllerBase
         return Ok(new DobihFileModel(result.Value));
     }
 
-    [HttpPost]
-    public async Task<IActionResult> UploadFile(IFormFile file, CancellationToken cancellationToken = default)
+    [HttpPost(Name = nameof(Upload))]
+    public async Task<IActionResult> Upload(IFormFile file, CancellationToken cancellationToken = default)
     {
         if (file == null || file.Length == 0) return BadRequest();
 
@@ -40,7 +40,7 @@ public class DobihFilesController : ControllerBase
         if (result.IsFailure) return BadRequest(result.ErrorMessage);
 
         return AcceptedAtRoute(
-            routeName: "GetDobihFile",
+            routeName: nameof(Get),
             routeValues: new { id = result.Value.Id },
             value: new DobihFileModel(result.Value));
     }

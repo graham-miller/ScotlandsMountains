@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>ScotlandsMountains.Api.Tests</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+  
+  <ItemGroup>
     <None Remove="UseCases\DobihFiles\Parsing\Resources\Classifications.csv" />
     <None Remove="UseCases\DobihFiles\Parsing\Resources\Explorer.txt" />
     <None Remove="UseCases\DobihFiles\Parsing\Resources\ExplorerActive.txt" />

@@ -25,4 +25,14 @@ public class DobihFileDto
     public DateTime? StartedProcessingAt { get; private set; }
 
     public DateTime? CompletedProcessingAt { get; private set; }
+
+    internal /*for testing*/  DobihFileDto(int id, string? name, string status, DateTime uploadedAt, DateTime startedProcessingAt, DateTime completedProcessingAt)
+    {
+        Id = id;
+        Name = name;
+        Status = status;
+        UploadedAt = uploadedAt;
+        StartedProcessingAt = startedProcessingAt;
+        CompletedProcessingAt = completedProcessingAt;
+    }
 }
