@@ -3,18 +3,18 @@ using ScotlandsMountains.Application.Ports;
 
 namespace ScotlandsMountains.Application.UseCases.DobihFiles;
 
-public record GetDobihFileStatusQuery(int Id) : IRequest<Result<DobihFileDto?>>;
+public record GetDobihFileInfoQuery(int Id) : IRequest<Result<DobihFileDto?>>;
 
-internal class GetDobihFileStatusHandler : IRequestHandler<GetDobihFileStatusQuery, Result<DobihFileDto?>>
+internal class GetDobihFileInfoQueryHandler : IRequestHandler<GetDobihFileInfoQuery, Result<DobihFileDto?>>
 {
     private readonly IDobihImportService _service;
 
-    public GetDobihFileStatusHandler(IDobihImportService service)
+    public GetDobihFileInfoQueryHandler(IDobihImportService service)
     {
         _service = service;
     }
 
-    public async Task<Result<DobihFileDto?>> HandleAsync(GetDobihFileStatusQuery request, CancellationToken cancellationToken = default)
+    public async Task<Result<DobihFileDto?>> HandleAsync(GetDobihFileInfoQuery request, CancellationToken cancellationToken = default)
     {
         var file = await _service.GetDobihFileAsync(request.Id, cancellationToken);
 

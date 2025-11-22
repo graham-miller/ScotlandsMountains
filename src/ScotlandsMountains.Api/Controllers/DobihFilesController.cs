@@ -19,7 +19,7 @@ public class DobihFilesController : ControllerBase
     [HttpGet("{id:int}", Name = "GetDobihFile")]
     public async Task<IActionResult> Get(int id, CancellationToken cancellationToken = default)
     {
-        var query = new GetDobihFileStatusQuery(id);
+        var query = new GetDobihFileInfoQuery(id);
         var result = await _mediator.SendAsync(query, cancellationToken);
 
         if (result.IsFailure) return BadRequest();
