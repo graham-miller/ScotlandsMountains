@@ -7,19 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="UseCases\DobihFiles\Factories\Resources\Classifications.csv" />
-    <None Remove="UseCases\DobihFiles\Factories\Resources\Explorer.txt" />
-    <None Remove="UseCases\DobihFiles\Factories\Resources\ExplorerActive.txt" />
-    <None Remove="UseCases\DobihFiles\Factories\Resources\Landranger.txt" />
-    <None Remove="UseCases\DobihFiles\Factories\Resources\LandrangerActive.txt" />
+    <None Remove="UseCases\DobihFiles\Parsing\Resources\Classifications.csv" />
+    <None Remove="UseCases\DobihFiles\Parsing\Resources\Explorer.txt" />
+    <None Remove="UseCases\DobihFiles\Parsing\Resources\ExplorerActive.txt" />
+    <None Remove="UseCases\DobihFiles\Parsing\Resources\Landranger.txt" />
+    <None Remove="UseCases\DobihFiles\Parsing\Resources\LandrangerActive.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="UseCases\DobihFiles\Factories\Resources\Classifications.csv" />
-    <EmbeddedResource Include="UseCases\DobihFiles\Factories\Resources\Explorer.txt" />
-    <EmbeddedResource Include="UseCases\DobihFiles\Factories\Resources\ExplorerActive.txt" />
-    <EmbeddedResource Include="UseCases\DobihFiles\Factories\Resources\Landranger.txt" />
-    <EmbeddedResource Include="UseCases\DobihFiles\Factories\Resources\LandrangerActive.txt" />
+    <EmbeddedResource Include="UseCases\DobihFiles\Parsing\Resources\Classifications.csv" />
+    <EmbeddedResource Include="UseCases\DobihFiles\Parsing\Resources\Explorer.txt" />
+    <EmbeddedResource Include="UseCases\DobihFiles\Parsing\Resources\ExplorerActive.txt" />
+    <EmbeddedResource Include="UseCases\DobihFiles\Parsing\Resources\Landranger.txt" />
+    <EmbeddedResource Include="UseCases\DobihFiles\Parsing\Resources\LandrangerActive.txt" />
   </ItemGroup>
 
   <ItemGroup>

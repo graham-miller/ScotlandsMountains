@@ -1,13 +1,17 @@
-﻿using ScotlandsMountains.Application.UseCases.DobihFiles.Models;
-using ScotlandsMountains.Domain.Entities;
+﻿using ScotlandsMountains.Domain.Entities;
 
-namespace ScotlandsMountains.Application.UseCases.DobihFiles.Factories;
+namespace ScotlandsMountains.Application.UseCases.DobihFiles.Parsing;
 
-internal static class RegionsFactory
+interface IRegionsFactory
 {
-    public static List<Region> BuildFrom(DobihRecordsByNumber records)
+    List<Region> BuildFrom(DobihRecords records);
+}
+
+internal class RegionsFactory : IRegionsFactory
+{
+    public List<Region> BuildFrom(DobihRecords records)
     {
-        return records.All
+        return records
         .Select(line => line.Region)
         .Distinct()
         .OrderBy(region => region)

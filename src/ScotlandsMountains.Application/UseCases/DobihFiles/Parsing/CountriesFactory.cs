@@ -1,10 +1,15 @@
 ﻿using ScotlandsMountains.Domain.Entities;
 
-namespace ScotlandsMountains.Application.UseCases.DobihFiles.Factories;
+namespace ScotlandsMountains.Application.UseCases.DobihFiles.Parsing;
 
-internal class CountriesFactory
+internal interface ICountriesFactory
 {
-    internal static List<Country> Build()
+    List<Country> Build();
+}
+
+internal class CountriesFactory : ICountriesFactory
+{
+    public List<Country> Build()
     {
         return [
             new Country("Scotland", 0, 'S'),

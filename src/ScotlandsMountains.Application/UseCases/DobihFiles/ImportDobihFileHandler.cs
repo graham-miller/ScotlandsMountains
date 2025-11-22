@@ -1,7 +1,6 @@
 ﻿using ScotlandsMountains.Application.Adapters;
 using ScotlandsMountains.Application.Ports;
-using ScotlandsMountains.Application.UseCases.DobihFiles.Factories;
-using ScotlandsMountains.Application.UseCases.DobihFiles.Models;
+using ScotlandsMountains.Application.UseCases.DobihFiles.Parsing;
 
 namespace ScotlandsMountains.Application.UseCases.DobihFiles;
 
@@ -11,31 +10,32 @@ internal class ImportDobihFileCommandHandler : IRequestHandler<ImportDobihFileCo
 {
     private readonly IDobihImportService _dobihImportService;
     private readonly IFileStorageService _fileStorageService;
+    private readonly IDobihFileReader _reader;
+    private readonly IDobihRecordsParserFactory _parserFactory;
 
     public ImportDobihFileCommandHandler(
         IDobihImportService dobihImportService,
-        IFileStorageService fileStorageService)
+        IFileStorageService fileStorageService,
+        IDobihFileReader reader,
+        IDobihRecordsParserFactory parserFactory)
     {
         _dobihImportService = dobihImportService;
         _fileStorageService = fileStorageService;
+        _reader = reader;
+        _parserFactory = parserFactory;
     }
 
     public async Task<Result> HandleAsync(ImportDobihFileCommand request, CancellationToken cancellationToken = default)
     {
         await _dobihImportService.StartProcessingAsync(request.ContainerName, request.FileName, cancellationToken);
 
-        var stream = await _fileStorageService.DownloadFileAsync(request.ContainerName, request.FileName, cancellationToken);
-        var records = new DobihRecordsByNumber(stream);
-        var regions = RegionsFactory.BuildFrom(records);
-        var maps = MapsFactory.Build();
-        var classifications = ClassificationsFactory.Build();
-        var counties = CountiesFactory.BuildFrom(records);
-        var countries = CountriesFactory.Build();
-        var mountains = new MountainsFactory(regions, maps, classifications, counties, countries).BuildFrom(records);
+        using var stream = await _fileStorageService.DownloadFileAsync(request.ContainerName, request.FileName, cancellationToken);
+        var records = _reader.Read(stream);
+        var output = _parserFactory.Build().Parse(records);
 
         await _dobihImportService.CompleteProcessingAsync(
             request.ContainerName, request.FileName, records.FileName,
-            regions, maps, classifications, counties, countries, mountains,
+            output.Regions, output.Maps, output.Classifications, output.Counties, output.Countries, output.Mountains,
             cancellationToken);
 
         return Result.Success();

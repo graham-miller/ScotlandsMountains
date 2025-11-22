@@ -40,7 +40,7 @@ public class UploadDobihFileCommandHandler : IRequestHandler<UploadDobihFileComm
         {
             return Result<DobihFileDto>.Failure(ex.Message);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             return Result<DobihFileDto>.Failure("File could not be processed.");
         }

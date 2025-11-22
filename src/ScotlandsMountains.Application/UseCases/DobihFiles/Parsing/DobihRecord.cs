@@ -1,7 +1,7 @@
 ﻿using CsvHelper.Configuration.Attributes;
 using System.Reflection;
 
-namespace ScotlandsMountains.Application.UseCases.DobihFiles.Models;
+namespace ScotlandsMountains.Application.UseCases.DobihFiles.Parsing;
 
 [Delimiter(",")]
 [CultureInfo("en-GB")]

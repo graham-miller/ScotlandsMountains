@@ -1,11 +1,16 @@
 ﻿using ScotlandsMountains.Domain.Entities;
 using System.Reflection;
 
-namespace ScotlandsMountains.Application.UseCases.DobihFiles.Factories;
+namespace ScotlandsMountains.Application.UseCases.DobihFiles.Parsing;
 
-internal static class MapsFactory
+internal interface IMapsFactory
 {
-    internal static List<Map> Build()
+    List<Map> Build();
+}
+
+internal class MapsFactory : IMapsFactory
+{
+    public List<Map> Build()
     {
         var publisher = new MapPublisher(MapPublisher.OrdnanceSurvey);
 

@@ -3,11 +3,16 @@ using ScotlandsMountains.Domain.Entities;
 using System.Globalization;
 using System.Reflection;
 
-namespace ScotlandsMountains.Application.UseCases.DobihFiles.Factories;
+namespace ScotlandsMountains.Application.UseCases.DobihFiles.Parsing;
 
-internal static class ClassificationsFactory
+internal interface IClassificationsFactory
 {
-    internal static List<Classification> Build()
+    List<Classification> Build();
+}
+
+internal class ClassificationsFactory : IClassificationsFactory
+{
+    public List<Classification> Build()
     {
         var name = $"{typeof(ClassificationsFactory).Namespace}.Resources.Classifications.csv";
 
