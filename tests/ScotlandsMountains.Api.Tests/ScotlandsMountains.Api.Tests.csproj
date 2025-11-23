@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\ScotlandsMountains.Api\ScotlandsMountains.Api.csproj" />
     <ProjectReference Include="..\..\src\ScotlandsMountains.Application\ScotlandsMountains.Application.csproj" />
+    <ProjectReference Include="..\..\src\ScotlandsMountains.Shared\ScotlandsMountains.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

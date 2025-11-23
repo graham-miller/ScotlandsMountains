@@ -12,6 +12,7 @@
     <Project Path="src/ScotlandsMountains.FunctionApp/ScotlandsMountains.FunctionApp.csproj" />
     <Project Path="src/ScotlandsMountains.Infrastructure/ScotlandsMountains.Infrastructure.csproj" />
     <Project Path="src/ScotlandsMountains.ServiceDefaults/ScotlandsMountains.ServiceDefaults.csproj" Id="11751dfe-2c7a-4f7e-ad09-43b433909cc9" />
+    <Project Path="src/ScotlandsMountains.Shared/ScotlandsMountains.Shared.csproj" Id="d5f39004-3437-40f5-86aa-4b5bb584f5e0" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/ScotlandsMountains.Api.Tests/ScotlandsMountains.Api.Tests.csproj" Id="ec3017a7-242b-4ae8-9151-eebbcafb39d1" />
@@ -19,5 +20,6 @@
     <Project Path="tests/ScotlandsMountains.Domain.Tests/ScotlandsMountains.Domain.Tests.csproj" Id="30ed4f77-8b1f-4d04-aeaa-ba0584dd9e29" />
     <Project Path="tests/ScotlandsMountains.FunctionApp.Tests/ScotlandsMountains.FunctionApp.Tests.csproj" Id="12bdf920-d0a1-426b-aa30-82c2ae7a411f" />
     <Project Path="tests/ScotlandsMountains.Infrastructure.Tests/ScotlandsMountains.Infrastructure.Tests.csproj" Id="6d14c605-5993-4f00-bfe6-f4afae893145" />
+    <Project Path="tests/ScotlandsMountains.Shared.Tests/ScotlandsMountains.Shared.Tests.csproj" Id="d0ef6724-d6fe-4fba-9c9e-ca1a79b77c55" />
   </Folder>
 </Solution>

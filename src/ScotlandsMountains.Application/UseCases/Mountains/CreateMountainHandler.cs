@@ -1,5 +1,6 @@
 ﻿using ScotlandsMountains.Application.Adapters;
 using ScotlandsMountains.Application.Ports;
+using ScotlandsMountains.Shared;
 
 namespace ScotlandsMountains.Application.UseCases.Mountains;
 

@@ -1,5 +1,6 @@
 ﻿using ScotlandsMountains.Application.Adapters;
 using ScotlandsMountains.Application.Ports;
+using ScotlandsMountains.Shared;
 
 namespace ScotlandsMountains.Application.UseCases.DobihFiles;
 
@@ -34,15 +35,15 @@ public class UploadDobihFileCommandHandler : IRequestHandler<UploadDobihFileComm
 
             await _fileUploadNotificationService.PublishFileUploadedNotificationAsync(containerName, fileName, cancellationToken);
 
-            return Result<DobihFileDto>.Success(new DobihFileDto(file));
+            return Result.Success(new DobihFileDto(file));
         }
-        catch (InvalidOperationException ex)
+        catch (InvalidOperationException)
         {
-            return Result<DobihFileDto>.Failure(ex.Message);
+            return Result.Failure<DobihFileDto>(Errors.BadRequest);
         }
         catch (Exception)
         {
-            return Result<DobihFileDto>.Failure("File could not be processed.");
+            return Result.Failure<DobihFileDto>(Errors.Unknown);
         }
     }
 }

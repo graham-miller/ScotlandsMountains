@@ -1,6 +1,6 @@
-﻿using ScotlandsMountains.Application.Adapters;
-using ScotlandsMountains.Application.Ports;
+﻿using ScotlandsMountains.Application.Ports;
 using ScotlandsMountains.Application.UseCases.DobihFiles.Parsing;
+using ScotlandsMountains.Shared;
 
 namespace ScotlandsMountains.Application.UseCases.DobihFiles;
 
@@ -38,6 +38,6 @@ internal class ImportDobihFileCommandHandler : IRequestHandler<ImportDobihFileCo
             output.Regions, output.Maps, output.Classifications, output.Counties, output.Countries, output.Mountains,
             cancellationToken);
 
-        return Result<bool>.Success(true);
+        return Result.Success();
     }
 }

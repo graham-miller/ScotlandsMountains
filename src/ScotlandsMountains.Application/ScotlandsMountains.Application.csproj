@@ -35,6 +35,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ScotlandsMountains.Domain\ScotlandsMountains.Domain.csproj" />
+    <ProjectReference Include="..\ScotlandsMountains.Shared\ScotlandsMountains.Shared.csproj" />
   </ItemGroup>
 
 </Project>

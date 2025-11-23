@@ -5,6 +5,7 @@ using ScotlandsMountains.Api.Controllers;
 using ScotlandsMountains.Application.Adapters;
 using ScotlandsMountains.Application.Ports;
 using ScotlandsMountains.Application.UseCases.DobihFiles;
+using ScotlandsMountains.Shared;
 using System.Net;
 
 namespace ScotlandsMountains.Api.Tests.Controllers;
@@ -31,7 +32,7 @@ public class DobihFilesControllerTests
             // arrange
             const int fileId = 1;
             var dto = new DobihFileDto(fileId, "name", "status", DateTime.UtcNow, DateTime.UtcNow.AddSeconds(1), DateTime.UtcNow.AddSeconds(2));
-            var successResult = Result<DobihFileDto?>.Success(dto);
+            var successResult = Result.Success(dto);
 
             _mediator
                 .SendAsync(Arg.Any<GetDobihFileInfoQuery>(), Arg.Any<CancellationToken>())
@@ -55,7 +56,7 @@ public class DobihFilesControllerTests
             // arrange
             _mediator
                 .SendAsync(Arg.Any<GetDobihFileInfoQuery>(), Arg.Any<CancellationToken>())
-                .Returns(Result<DobihFileDto?>.Failure("Database error"));
+                .Returns(Result.Failure<DobihFileDto>(Errors.BadRequest));
 
             // act
             var actual = await _sut.Get(1) as BadRequestResult;
@@ -65,12 +66,12 @@ public class DobihFilesControllerTests
         }
 
         [Test]
-        public async Task MediatorReturnsSuccessWithNullValue_ReturnsNotFound()
+        public async Task MediatorReturnsFailureWithNotFound_ReturnsNotFound()
         {
             // arrange
             _mediator
                 .SendAsync(Arg.Any<GetDobihFileInfoQuery>(), Arg.Any<CancellationToken>())
-                .Returns(Result<DobihFileDto?>.Success(null));
+                .Returns(Result.Failure<DobihFileDto>(Errors.NotFound));
 
             // act
             var actual = await _sut.Get(1) as NotFoundResult;
@@ -130,7 +131,7 @@ public class DobihFilesControllerTests
             // arrange
             const int newFileId = 1;
             var dto = new DobihFileDto(newFileId, "name", "status", DateTime.UtcNow, DateTime.UtcNow.AddSeconds(1), DateTime.UtcNow.AddSeconds(2));
-            var successResult = Result<DobihFileDto>.Success(dto);
+            var successResult = Result.Success(dto);
 
             var mockFile = Substitute.For<IFormFile>();
             mockFile.Length.Returns(100);
@@ -170,7 +171,7 @@ public class DobihFilesControllerTests
         {
             // arrange
             const string errorMessage = "Error message";
-            var failureResult = Result<DobihFileDto>.Failure(errorMessage);
+            var failureResult = Result.Failure<DobihFileDto>(Errors.BadRequest);
 
             var mockFile = Substitute.For<IFormFile>();
             mockFile.Length.Returns(100);
