@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ScotlandsMountains.Api.Extensions;
 using ScotlandsMountains.Application.Adapters;
 using ScotlandsMountains.Application.Ports;
 using ScotlandsMountains.Application.UseCases.DobihFiles;
-using ScotlandsMountains.Shared;
-using System.Net;
 
 namespace ScotlandsMountains.Api.Controllers;
 
@@ -24,15 +23,7 @@ public class DobihFilesController : ControllerBase
         var query = new GetDobihFileInfoQuery(id);
         var result = await _mediator.SendAsync(query, cancellationToken);
 
-        if (result.IsFailure)
-        {
-            if (result.Error == Errors.NotFound)
-                return NotFound();
-
-            return BadRequest();
-        }
-
-        return Ok(new DobihFileModel(result.Value));
+        return result.Map(result => Ok(new DobihFileModel(result)));
     }
 
     [HttpPost(Name = nameof(Upload))]
@@ -44,18 +35,9 @@ public class DobihFilesController : ControllerBase
 
         var result = await _mediator.SendAsync(command, cancellationToken);
 
-
-        if (result.IsFailure)
-        {
-            if (result.Error == Errors.Unknown)
-                return StatusCode((int) HttpStatusCode.InternalServerError);
-
-            return BadRequest();
-        }
-
-        return AcceptedAtRoute(
+        return result.Map(result => AcceptedAtRoute(
             routeName: nameof(Get),
-            routeValues: new { id = result.Value.Id },
-            value: new DobihFileModel(result.Value));
+            routeValues: new { id = result.Id },
+            value: new DobihFileModel(result)));
     }
 }
