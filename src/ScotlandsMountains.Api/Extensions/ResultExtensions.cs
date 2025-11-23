@@ -17,6 +17,7 @@ public static class ResultExtensions
                 _ => new BadRequestResult()
             };
         }
+
         return onSuccess(result.Value);
     }
 }

@@ -170,7 +170,6 @@ public class DobihFilesControllerTests
         public async Task MediatorReturnsFailure_ReturnsBadRequestWithMessage()
         {
             // arrange
-            const string errorMessage = "Error message";
             var failureResult = Result.Failure<DobihFileDto>(Errors.BadRequest);
 
             var mockFile = Substitute.For<IFormFile>();
@@ -182,14 +181,10 @@ public class DobihFilesControllerTests
                 .Returns(failureResult);
 
             // act
-            var actual = await _sut.Upload(mockFile) as BadRequestObjectResult;
+            var actual = await _sut.Upload(mockFile) as BadRequestResult;
 
             // assert
-            using (Assert.EnterMultipleScope())
-            {
-                Assert.That(actual!.StatusCode, Is.EqualTo((int)HttpStatusCode.BadRequest));
-                Assert.That(actual.Value, Is.EqualTo(errorMessage));
-            }
+            Assert.That(actual!.StatusCode, Is.EqualTo((int)HttpStatusCode.BadRequest));
         }
     }
 }

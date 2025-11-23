@@ -40,7 +40,7 @@ public class Result<T>
     public T GetValueOrThrow()
     {
         if (IsFailure)
-            throw new InvalidOperationException($"Cannot access Value. The operation failed: {Error}");
+            throw new InvalidOperationException("Cannot access value as the operation failed.");
         
         return Value;
     }
