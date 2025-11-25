@@ -6,7 +6,7 @@ namespace ScotlandsMountains.Application.UseCases.DobihFiles;
 
 public record GetDobihFileInfoQuery(int Id) : IRequest<Result<DobihFileDto>>;
 
-internal class GetDobihFileInfoQueryHandler : IRequestHandler<GetDobihFileInfoQuery, Result<DobihFileDto>>
+public class GetDobihFileInfoQueryHandler : IRequestHandler<GetDobihFileInfoQuery, Result<DobihFileDto>>
 {
     private readonly IDobihImportService _service;
 
