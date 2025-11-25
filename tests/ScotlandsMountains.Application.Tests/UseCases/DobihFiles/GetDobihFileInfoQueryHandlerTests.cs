@@ -15,7 +15,6 @@ public class GetDobihFileInfoQueryHandlerTests
     [SetUp]
     public void SetUp()
     {
-        // arrange
         _service = Substitute.For<IDobihImportService>();
         _sut = new GetDobihFileInfoQueryHandler(_service);
     }
