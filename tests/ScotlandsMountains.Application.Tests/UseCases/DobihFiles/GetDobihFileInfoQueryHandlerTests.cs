@@ -10,7 +10,7 @@ namespace ScotlandsMountains.Application.Tests.UseCases.DobihFiles;
 public class GetDobihFileInfoQueryHandlerTests
 {
     private IDobihImportService _service;
-    private GetDobihFileInfoQueryHandler _sut; // System Under Test
+    private GetDobihFileInfoQueryHandler _sut;
 
     [SetUp]
     public void SetUp()
