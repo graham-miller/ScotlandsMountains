@@ -65,8 +65,8 @@ public class ImportDobihFileCommandHandlerTests
         // assert
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(result.IsSuccess, Is.True, "Expected successful result.");
-            Assert.That(result.Value, Is.True, "Expected successful boolean value.");
+            Assert.That(result.IsSuccess, Is.True);
+            Assert.That(result.Value, Is.True);
 
             await _dobihImportService.Received(1).StartProcessingAsync(
                 Container, FileName, Arg.Is<CancellationToken>(t => t == token));
