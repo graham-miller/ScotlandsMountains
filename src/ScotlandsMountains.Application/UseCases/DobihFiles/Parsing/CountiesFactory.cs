@@ -13,6 +13,7 @@ internal class CountiesFactory : ICountiesFactory
     {
         return records
             .SelectMany(line => line.County?.Split('/') ?? [])
+            .Select(name => name.Trim())
             .Where(c => !string.IsNullOrWhiteSpace(c))
             .Distinct()
             .OrderBy(name => name)

@@ -6,13 +6,13 @@ namespace ScotlandsMountains.Application.Tests.UseCases.DobihFiles.Parsing;
 public class ClassificationsFactoryTests
 {
     [Test]
-    public void Build_ShouldReturnClassifications()
+    public void Build_ReturnsClassifications()
     {
         // arrange
-        var factory = new ClassificationsFactory();
+        var sut = new ClassificationsFactory();
         
         // act
-        var actual = factory.Build();
+        var actual = sut.Build();
 
         // assert
         using (Assert.EnterMultipleScope())
